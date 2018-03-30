@@ -1,4 +1,5 @@
 <?php
+    require ('../config/dev.php');
 	require('../src/controller/frontend.php');
 	require('../config/Autoloader.php');
 	\Openclassrooms\Blog\config\Autoloader::register();
