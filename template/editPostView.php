@@ -7,7 +7,7 @@
 		$post = $editedPost->fetch();
 	?>
 
-	<form action="home.php?action=editedPost&id=<?= $post['id']?>" method="post">
+	<form action="../public/index.php?action=editedPost&id=<?= $post['id']?>" method="post">
 		<div>
 			<label for="newTitle">Titre du post</label><br />
 			<textarea id="newTitle" name="newTitle"><?= $post['title'] ?></textarea>
