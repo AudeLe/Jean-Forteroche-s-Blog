@@ -10,5 +10,7 @@
 		<p><a href="../template/addPostView.php">Ajouter un nouvel article</a></p>
 
 		<?= $content ?>
+
+        <script src = "js/moderation.js"></script>
 	</body>
 </html>
