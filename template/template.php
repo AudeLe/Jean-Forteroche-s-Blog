@@ -7,7 +7,7 @@
 	</head>
 
 	<body>
-		<p><a href="addPostView.php">Ajouter un nouvel article</a></p>
+		<p><a href="../template/addPostView.php">Ajouter un nouvel article</a></p>
 
 		<?= $content ?>
 	</body>
