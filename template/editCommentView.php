@@ -8,7 +8,7 @@
 		$comment = $editedComment->fetch();
 	?>
 
-	<form action="home.php?action=editedComment&id=<?= $comment['id'] ?>" method="post">
+	<form action="../public/index.php?action=editedComment&id=<?= $comment['id'] ?>" method="post">
 		<div>
 			<p>Auteur : <?= $comment['author'] ?></p>
 		</div>
