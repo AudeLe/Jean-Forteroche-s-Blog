@@ -26,7 +26,7 @@
 
 		$affectedPost = $postManager -> addPost($title, $article);
 
-		header('Location: home.php');
+		header('Location: ../public/index.php');
 	}
 
 	function addComment($postId, $author, $comment){
@@ -37,7 +37,7 @@
 		if($affectedLines === false){
 			throw new Exception('Impossible d\'ajouter le commentaire !');
 		} else {
-			header('Location: home.php?action=post&id=' . $postId);
+			header('Location: ../public/index.php?action=post&id=' . $postId);
 		}
 	}
 
@@ -55,7 +55,7 @@
 
 		$newlyEditedComment = $commentManager -> editedComment($id, $newComment);
 
-		header('Location: home.php');
+		header('Location: ../public/index.php');
 	}
 
 	function deleteComment($id){
@@ -63,7 +63,7 @@
 
 		$deletedComment = $commentManager -> deleteComment($id);
 
-		header('Location: home.php');
+		header('Location: ../public/index.php');
 	}
 
 	function editPost($id){
@@ -79,7 +79,7 @@
 
 		$newlyEditedPost = $postManager -> editedPost($id, $newTitle, $newPost);
 
-		header('Location: home.php');
+		header('Location: ../public/index.php');
 	}
 
 	function deletePost($id){
@@ -87,5 +87,5 @@
 
 		$deletedPost = $postManager -> deletePost($id);
 
-		header('Location: home.php');
+		header('Location: ../public/index.php');
 	}
