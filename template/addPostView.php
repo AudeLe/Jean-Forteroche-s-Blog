@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 	<h2>Ajout d'article</h2>
 
-	<form action="home.php?action=addPost" method="post">
+	<form action="../public/index.php?action=addPost" method="post">
 		<div>
 			<label for="title">Titre</label><br />
 			<input type="text" id="title" name="title">
