@@ -10,14 +10,14 @@
 
 
         <button id ="connection">Connexion</button>
-        <form action = "../public/index.php?action=connection" id="connectionForm">
+        <form action = "../public/index.php?action=connection" id="connectionForm" method="post">
             <div>
                 <label for="login">Identifiant</label><br />
                 <input type="text" id="login" name="login"/>
             </div>
             <div>
-                <label for="password">Mot de passe</label><br />
-                <input type="password" id="password" name="password"/>
+                <label for="passwordVisitor">Mot de passe</label><br />
+                <input type="password" id="passwordVisitor" name="passwordVisitor"/>
             </div>
             <div>
                 <input type="submit" value="S'inscrire"/>
