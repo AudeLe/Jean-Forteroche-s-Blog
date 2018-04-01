@@ -2,6 +2,7 @@
 	
 	require_once('../src/DAO/PostManager.php');
 	require_once('../src/DAO/CommentManager.php');
+	require_once('../src/DAO/ConnectionManager.php');
 
 	function listPosts(){
 		$postManager = new \Openclassrooms\Blog\Model\PostManager();
@@ -28,6 +29,15 @@
 
 		header('Location: ../public/index.php');
 	}
+
+	// Connection
+    function connection($login, $passwordVisitor){
+	    $connectionManager = new \Openclassrooms\Blog\Model\ConnectionManager();
+
+	    $executeConnection = $connectionManager -> connection($login, $passwordVisitor);
+
+	    header('Location: ../public/index.php');
+    }
 
 	function addComment($postId, $author, $comment){
 		$commentManager = new \Openclassrooms\Blog\Model\CommentManager();
