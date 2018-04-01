@@ -91,6 +91,15 @@
                         }
                     }
 
+                    // Connexion
+                    elseif($_GET['action'] == 'connection'){
+                        if(!empty($_POST['login']) && !empty($_POST['passwordVisitor'])){
+                            connection($_POST['login'], $_POST['passwordVisitor']);
+                        } else {
+                            throw new Exception('Impossible d\'enregistrer les informations de la personne.');
+                        }
+                    }
+
                 } else {
                     listPosts();
                 }
