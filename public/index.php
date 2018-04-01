@@ -1,12 +1,12 @@
 <?php
     require ('../config/dev.php');
 	require('../src/controller/frontend.php');
-	require('../config/Autoloader.php');
-	\Openclassrooms\Blog\config\Autoloader::register();
+	//require('../config/Autoloader.php');
+	// \Openclassrooms\Blog\config\Autoloader::register();
 
-	class Routeur {
+	//class Router {
 
-	    public function start(){
+	   // public function start(){
 
             try{
                 if(isset($_GET['action'])){
@@ -98,6 +98,5 @@
                 echo 'Erreur : ' . $e->getMessage();
             }
 
-        }
-    }
-	
+        //}
+    //}
