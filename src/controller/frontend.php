@@ -30,15 +30,6 @@
 		header('Location: ../public/index.php');
 	}
 
-	// Connection
-    function connection($login, $passwordVisitor){
-	    $connectionManager = new \Openclassrooms\Blog\Model\ConnectionManager();
-
-	    $executeConnection = $connectionManager -> connection($login, $passwordVisitor);
-
-	    header('Location: ../public/index.php');
-    }
-
 	function addComment($postId, $author, $comment){
 		$commentManager = new \Openclassrooms\Blog\Model\CommentManager();
 
