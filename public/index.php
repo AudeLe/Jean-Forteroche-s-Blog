@@ -1,6 +1,7 @@
 <?php
-    require ('../config/dev.php');
+    require('../config/dev.php');
 	require('../src/controller/frontend.php');
+	require('../src/controller/backend.php');
 	//require('../config/Autoloader.php');
 	// \Openclassrooms\Blog\config\Autoloader::register();
 
@@ -91,12 +92,21 @@
                         }
                     }
 
-                    // Connexion
+                    // Registration on the website
+                    elseif($_GET['action'] == 'registration'){
+                        if(!empty($_POST['login']) && !empty($_POST['passwordVisitor'])){
+                            registration($_POST['login'], $_POST['passwordVisitor']);
+                        } else {
+                            throw new Exception('Impossible d\'enregistrer les informations de la personne.');
+                        }
+                    }
+
+                    // Connection on the website
                     elseif($_GET['action'] == 'connection'){
                         if(!empty($_POST['login']) && !empty($_POST['passwordVisitor'])){
                             connection($_POST['login'], $_POST['passwordVisitor']);
                         } else {
-                            throw new Exception('Impossible d\'enregistrer les informations de la personne.');
+                            throw new Exception('Impossible de vous identifier.');
                         }
                     }
 
