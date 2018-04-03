@@ -24,6 +24,10 @@ a{
 	color: blue;
 }
 
+#registrationForm{
+	display: none;
+}
+
 #connectionForm{
 	display: none;
 }
