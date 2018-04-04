@@ -6,7 +6,7 @@
     function registration($login, $passwordVisitor){
         $connectionManager = new \Openclassrooms\Blog\Model\ConnectionManager();
 
-        $executeRegistration = $connectionManager -> registration($login, $passwordVisitor);
+        $connectionManager -> registration($login, $passwordVisitor);
 
         header('Location: ../public/index.php');
     }
@@ -15,7 +15,8 @@
     function connection($login, $passwordVisitor){
         $connectionManager = new \Openclassrooms\Blog\Model\ConnectionManager();
 
-        $executeConnection = $connectionManager -> connection($login, $passwordVisitor);
+        $connectionManager -> connection($login, $passwordVisitor);
 
         header('Location: ../public/index.php');
     }
+    
