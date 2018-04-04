@@ -32,8 +32,6 @@ namespace Openclassrooms\Blog\Model;
 
             $resultat2 = password_verify($passwordVisitor, $resultat['password']);
 
-            //return $resultat2;
-
             if ($resultat2 == false){
                 echo 'Mauvais identifiant ou mot de passe.';
             } else {
@@ -47,4 +45,5 @@ namespace Openclassrooms\Blog\Model;
                 }
             }
         }
+
     }
