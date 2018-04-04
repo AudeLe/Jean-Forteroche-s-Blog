@@ -1,4 +1,7 @@
 <?php
+
+    session_start();
+    session_regenerate_id(true); // Change the session id on each log in
     if(isset($_SESSION['id']) && isset($_SESSION['login'])){
         echo 'Bonjour ' . $_SESSION['login'];
     }
@@ -44,6 +47,8 @@
                 <input type="submit" value="Se connecter"/>
             </div>
         </form>
+
+        <a href="../template/logOut.php">Déconnexion</a>
 
 		<p><a href="../template/addPostView.php">Ajouter un nouvel article</a></p>
 
