@@ -94,8 +94,8 @@
 
                     // Registration on the website
                     elseif($_GET['action'] == 'registration'){
-                        if(!empty($_POST['login']) && !empty($_POST['passwordVisitor'])){
-                            registration($_POST['login'], $_POST['passwordVisitor']);
+                        if(!empty($_POST['login']) && !empty($_POST['passwordVisitor']) && !empty($_POST['passwordVisitorCheck'])){
+                            registration($_POST['login'], $_POST['passwordVisitor'], $_POST['passwordVisitorCheck']);
                         } else {
                             throw new Exception('Impossible d\'enregistrer les informations de la personne.');
                         }
@@ -107,6 +107,22 @@
                             connection($_POST['login'], $_POST['passwordVisitor']);
                         } else {
                             throw new Exception('Impossible de vous identifier.');
+                        }
+                    }
+
+                    elseif($_GET['action'] == 'checkInformations'){
+                        if(!empty($_POST['checkLogin']) && !empty($_POST['checkPassword'])){
+                            checkInformations($_POST['checkLogin'], $_POST['checkPassword']);
+                        } else {
+                            throw new Exception('Impossible de vous identifier afin de changer vos informations.');
+                        }
+                    }
+                    
+                    elseif($_GET['action'] == 'editInformations'){
+                        if(!empty($_POST['idVisitor']) && !empty($_POST['editLogin']) && !empty($_POST['editPassword']) && !empty($_POST['editPasswordCheck'])){
+                            editInformations($_POST['idVisitor'], $_POST['editLogin'], $_POST['editPassword'], $_POST['editPasswordCheck']);
+                        } else {
+                            throw new Exception('Vous n\'avez pas entré les bonnes informations.');
                         }
                     }
 
