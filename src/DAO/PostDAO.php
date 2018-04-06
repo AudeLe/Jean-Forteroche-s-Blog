@@ -2,15 +2,22 @@
 	
 	namespace Openclassrooms\Blog\Model;
 
-	require_once('Manager.php');
+	require_once('DAO.php');
+	require('../src/class/Post.php');
 
-	class PostManager extends Manager{
+	class PostDAO extends DAO{
 
 		public function getPosts(){
 			$db = $this -> dbConnect();
 			$req = $db -> query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
 
-			return $req; 
+			/*$posts = array();
+			foreach($req as $row){
+			    $postId = $row['id'];
+			    $posts[$postId] = $this-> buildClassObject($row);
+            }*/
+
+			return $req;
 		}
 
 		public function getPost($postId){
@@ -18,6 +25,12 @@
 			$req = $db -> prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
 			$req -> execute(array($postId));
 			$post = $req -> fetch();
+
+            /*if ($req){
+                return $this -> buildClassObject($req);
+            } else {
+                throw new Exception ('Il n\'y a pas d\'article correspondant à cet identifiant.');
+            }*/
 
 			return $post;
 		}
@@ -58,8 +71,16 @@
 			$db = $this -> dbConnect();
 
 			$deletedPost = $db -> prepare('DELETE FROM posts WHERE id = :id');
-			$deletedPost = $deletedPost -> execute(array(
+			$deletedPost -> execute(array(
 				'id' => $id
 			));
 		}
+
+		/*protected function buildClassObject(array $row){
+		    $post = new Post();
+		    $post -> setId($row['id']);
+		    $post -> setTitle($row['title']);
+		    $post -> setContent($row['content']);
+		    return $post;
+        }*/
 	}
