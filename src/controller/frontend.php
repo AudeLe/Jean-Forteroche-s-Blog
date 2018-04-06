@@ -1,19 +1,19 @@
 <?php
 	
-	require_once('../src/DAO/PostManager.php');
-	require_once('../src/DAO/CommentManager.php');
-	require_once('../src/DAO/ConnectionManager.php');
+	require_once('../src/DAO/PostDAO.php');
+	require_once('../src/DAO/CommentDAO.php');
+	require_once('../src/DAO/ConnectionDAO.php');
 
 	function listPosts(){
-		$postManager = new \Openclassrooms\Blog\Model\PostManager();
+		$postManager = new \Openclassrooms\Blog\Model\PostDAO();
 		$posts = $postManager -> getPosts();
 
 		require('../template/listPostsView.php');
 	}
 
 	function post(){
-		$postManager = new \Openclassrooms\Blog\Model\PostManager();
-		$commentManager = new \Openclassrooms\Blog\Model\CommentManager();
+		$postManager = new \Openclassrooms\Blog\Model\PostDAO();
+		$commentManager = new \Openclassrooms\Blog\Model\CommentDAO();
 
 		$post = $postManager -> getPost($_GET['id']);
 		$comments = $commentManager -> getComments($_GET['id']);
@@ -23,7 +23,7 @@
 
 	// Ajout d'article
 	function addPost($title, $article){
-		$postManager = new \Openclassrooms\Blog\Model\PostManager();
+		$postManager = new \Openclassrooms\Blog\Model\PostDAO();
 
 		$affectedPost = $postManager -> addPost($title, $article);
 
@@ -31,7 +31,7 @@
 	}
 
 	function addComment($postId, $author, $comment){
-		$commentManager = new \Openclassrooms\Blog\Model\CommentManager();
+		$commentManager = new \Openclassrooms\Blog\Model\CommentDAO();
 
 		$affectedLines = $commentManager->postComment($postId, $author, $comment);
 
@@ -43,7 +43,7 @@
 	}
 
 	function editComment($id){
-		$commentManager = new \Openclassrooms\Blog\Model\CommentManager();
+		$commentManager = new \Openclassrooms\Blog\Model\CommentDAO();
 
 		$editedComment = $commentManager -> editComment($id);
 
@@ -52,7 +52,7 @@
 
 	// Rediriger vers la page du post
 	function editedComment($id, $newComment){
-		$commentManager = new \Openclassrooms\Blog\Model\CommentManager();
+		$commentManager = new \Openclassrooms\Blog\Model\CommentDAO();
 
 		$newlyEditedComment = $commentManager -> editedComment($id, $newComment);
 
@@ -60,7 +60,7 @@
 	}
 
 	function deleteComment($id){
-		$commentManager = new \Openclassrooms\Blog\Model\CommentManager();
+		$commentManager = new \Openclassrooms\Blog\Model\CommentDAO();
 
 		$deletedComment = $commentManager -> deleteComment($id);
 
@@ -68,7 +68,7 @@
 	}
 
 	function editPost($id){
-		$postManager = new \Openclassrooms\Blog\Model\PostManager();
+		$postManager = new \Openclassrooms\Blog\Model\PostDAO();
 
 		$editedPost = $postManager -> editPost($id);
 
@@ -76,7 +76,7 @@
 	}
 
 	function editedPost($id, $newTitle, $newPost){
-		$postManager = new \Openclassrooms\Blog\Model\PostManager();
+		$postManager = new \Openclassrooms\Blog\Model\PostDAO();
 
 		$newlyEditedPost = $postManager -> editedPost($id, $newTitle, $newPost);
 
@@ -84,7 +84,7 @@
 	}
 
 	function deletePost($id){
-		$postManager = new \Openclassrooms\Blog\Model\PostManager();
+		$postManager = new \Openclassrooms\Blog\Model\PostDAO();
 
 		$deletedPost = $postManager -> deletePost($id);
 
