@@ -2,9 +2,9 @@
 
 namespace Openclassrooms\Blog\Model;
 
-require_once('Manager.php');
+require_once('DAO.php');
 
-class CommentManager extends Manager{
+class CommentDAO extends DAO{
 
 	public function getComments($postId){
 		$db = $this -> dbConnect();
@@ -35,7 +35,7 @@ class CommentManager extends Manager{
 		$db = $this -> dbConnect();
 
 		$newlyEditedComment = $db -> prepare('UPDATE comments SET comment = ? WHERE id = ?');
-		$newlyEditedComment = $newlyEditedComment -> execute(array($newComment, $id));
+		$newlyEditedComment -> execute(array($newComment, $id));
 
 		return $newlyEditedComment;
 	}
@@ -44,7 +44,7 @@ class CommentManager extends Manager{
 		$db = $this -> dbConnect();
 
 		$deletedComment = $db -> prepare('DELETE FROM comments WHERE id = :id');
-		$deletedComment = $deletedComment -> execute(array(
+		$deletedComment -> execute(array(
 			'id' => $id
 		));
 	}
