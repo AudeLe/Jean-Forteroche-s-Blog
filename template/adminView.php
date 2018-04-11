@@ -4,6 +4,8 @@
 
     <h1>Page d'administration</h1>
 
+    <a href="../public/index.php">Retourner à la page d'accueil du site</a>
+
     <button>Ajouter un nouvel article</button>
 	<h2>Ajout d'article</h2>
 
@@ -37,6 +39,8 @@
             <input type="submit" value="Confirmer mes identifiants" />
         </div>
     </form>
+
+
 
 <?php $content = ob_get_clean(); ?>
 
