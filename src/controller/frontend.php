@@ -9,6 +9,7 @@
 		$posts = $postManager -> getPosts();
 
 		require('../template/listPostsView.php');
+		//require('../template/adminView.php');
 	}
 
 	function post(){
