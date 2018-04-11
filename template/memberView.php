@@ -4,6 +4,8 @@
 
     <h1>Page de profil</h1>
 
+    <a href="../public/index.php">Retourner à la page d'accueil du site</a>
+
 
     <h2>Changer son pseudo ou son mot de passe</h2>
     <p>Veuillez entrer vos identifiants actuels</p>
