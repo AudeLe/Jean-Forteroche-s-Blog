@@ -7,9 +7,9 @@
 	function listPosts(){
 		$postManager = new \Openclassrooms\Blog\Model\PostDAO();
 		$posts = $postManager -> getPosts();
-
+        //require_once('../template/adminView.php');
 		require('../template/listPostsView.php');
-		//require('../template/adminView.php');
+
 	}
 
 	function post(){
@@ -28,7 +28,7 @@
 
 		$affectedPost = $postManager -> addPost($title, $article);
 
-		header('Location: ../public/index.php');
+		header('Location: ../public/adminView.php');
 	}
 
 	function addComment($postId, $author, $comment){
