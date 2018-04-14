@@ -10,8 +10,8 @@
 			<div class="news">
 				<h3>
 					<?= htmlspecialchars($data['title']) ?><br/ >
-					<em>le <?= $data['creation_date_fr'] ?></em><a href="../public/index.php?action=editPost&id=<?= $data['id'] ?>"> - Editer le post</a><br />
-					<a href="../public/index.php?action=deletePost&id=<?= $data['id'] ?>">Supprimer le post</a>
+					<em>le <?= $data['creation_date_fr'] ?></em>
+
 				</h3>
 
 				<p>
