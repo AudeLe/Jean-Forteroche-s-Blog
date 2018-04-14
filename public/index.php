@@ -23,6 +23,18 @@
                         }
                     }
 
+                    elseif($_GET['action'] == 'getPosts'){
+                            getPosts();
+                    }
+
+                    elseif($_GET['action'] == 'getComments'){
+                        if(isset($_GET['login'])){
+                            getComments($_GET['login']);
+                        } else {
+                            throw new Exception('Veuillez vous connecter afin d\'accéder à vos commentaires.');
+                        }
+                    }
+
                     // Ajout d'un article
                     elseif($_GET['action'] == 'addPost'){
                         if(!empty($_POST['title']) && !empty($_POST['article'])){
