@@ -43,30 +43,42 @@ namespace Openclassrooms\Blog\Model;
                 'login' => $login
             ));
 
-            $result = $pass_exist -> fetch();
+            $connectionDetails = $pass_exist -> fetch();
 
-            $result2 = password_verify($passwordVisitor, $result['password']);
+            $result2 = password_verify($passwordVisitor, $connectionDetails['password']);
 
             if ($result2 == false){
                 echo 'Mauvais identifiant ou mot de passe.';
             } else {
                 if ($result2 == true){
                     session_start();
-                    $_SESSION['id'] = $result['id'];
+                    $_SESSION['id'] = $connectionDetails['id'];
                     $_SESSION['login'] = $login;
                     echo 'Vous êtes connecté !';
-                    var_dump($result['status']);
+                    var_dump($connectionDetails['status']);
                     //die();
-                    if($result['status'] == 'admin'){
+                    if($connectionDetails['status'] == 'admin'){
+                        var_dump($connectionDetails['id']);
+                        //die();
+
                         header('Location: ../template/adminView.php');
+
+                        return $connectionDetails;
                     }else{
+                        var_dump($connectionDetails['id']);
+                        //die();
                         header('Location: ../template/memberView.php');
+
+                        return $connectionDetails;
                     }
 
+                    return $connectionDetails;
                 } else {
                     echo 'Mauvais identifiant ou mot de passe.';
                 }
             }
+
+
         }
 
         public function checkInformations($checkLogin, $checkPassword){
@@ -103,9 +115,10 @@ namespace Openclassrooms\Blog\Model;
                     'login' => $editLogin,
                     'password' => $editPasswordHashed
                 ));
-
-                //$visitor = $req -> fetch();
-                //var_dump($visitor['status']);
+                /*var_dump($req);
+                $visitor = $req -> fetch();
+                var_dump($visitor);
+                die();*/
 
                 header('Location: ../public/index.php');
                 /*if ($visitor['status'] == 'admin'){
@@ -134,4 +147,28 @@ namespace Openclassrooms\Blog\Model;
             }
         }*/
 
+        public function getPosts(){
+            $db = $this -> dbConnect();
+            $req = $db -> query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
+
+            /*$posts = array();
+            foreach($req as $row){
+                $postId = $row['id'];
+                $posts[$postId] = $this-> buildClassObject($row);
+            }*/
+
+            return $req;
+        }
+
+        public function getMemberComments($loginSession){
+            $db = $this ->dbConnect();
+            $memberComments = $db -> prepare('SELECT id, post_id, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE author = ? ORDER BY comment_date DESC LIMIT 0, 5');
+            $memberComments -> execute(array($loginSession));
+
+            //$memberComments = $req -> fetch();
+
+            //var_dump($memberComments);
+            //die();
+            return $memberComments;
+        }
     }
