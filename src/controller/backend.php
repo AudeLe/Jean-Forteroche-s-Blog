@@ -2,6 +2,20 @@
 
     require_once('../src/DAO/ConnectionDAO.php');
 
+    function getPosts(){
+        $postManager = new \Openclassrooms\Blog\Model\ConnectionDAO();
+        $postsAdmin = $postManager -> getPosts();
+
+        require('../template/adminView.php');
+    }
+
+    function getComments($loginSession){
+        $getCommentsManager = new \Openclassrooms\Blog\Model\ConnectionDAO();
+        $memberComments = $getCommentsManager -> getMemberComments($loginSession);
+
+        require('../template/memberView.php');
+    }
+
     // Registration on the website
     function registration($login, $passwordVisitor, $passwordVisitorCheck){
         $connectionManager = new \Openclassrooms\Blog\Model\ConnectionDAO();
@@ -15,7 +29,7 @@
     function connection($login, $passwordVisitor){
         $connectionManager = new \Openclassrooms\Blog\Model\ConnectionDAO();
 
-        $connectionManager -> connection($login, $passwordVisitor);
+        $connectionDetails = $connectionManager -> connection($login, $passwordVisitor);
 
         //header('Location: ../public/index.php');
     }
