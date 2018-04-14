@@ -35,7 +35,7 @@
 	<?php
 		while($comment = $comments->fetch()){
 			?>
-			<p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?> <a href="../public/index.php?action=editComment&id=<?= $comment['id']?>">Modifier</a> / <a href="../public/index.php?action=deleteComment&id=<?= $comment['id'] ?>">Supprimer</a> / <button id="ReportedComment">Signaler</button></p>
+			<p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?> <button id="ReportedComment">Signaler</button></p>
             <p id="ReportedCommentArea"></p>
 			<p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
 
