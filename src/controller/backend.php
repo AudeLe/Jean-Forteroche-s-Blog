@@ -47,3 +47,18 @@
 
         $connectionManager -> editInformations($idVisitor, $editLogin, $editPassword, $editPasswordCheck);
     }
+
+    function reportComment($idComment){
+        $connectionManager = new \Openclassrooms\Blog\Model\ConnectionDAO();
+
+        $reportedComment = $connectionManager -> reportComment($idComment);
+
+        //require('../template/adminView.php');
+    }
+
+    function getReportedComments(){
+        $connectionManager = new \Openclassrooms\Blog\Model\ConnectionDAO();
+        $reportedVisitorComments = $connectionManager -> getReportedComments();
+
+        require('../template/adminView.php');
+    }
