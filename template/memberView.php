@@ -30,8 +30,6 @@
             <a href="../public/index.php?action=getComments&login=<?= $loginSession ?>">Afficher mes commentaires</a>
 
             <table>
-                <caption>Commentaires publiés</caption>
-
                 <tr>
                     <th>Numéro du post</th>
                     <th>Commentaire</th>
