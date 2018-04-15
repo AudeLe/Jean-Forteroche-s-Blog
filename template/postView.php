@@ -2,13 +2,13 @@
 
 <?php ob_start(); ?>
 	
-	<h1>Mon super blog !</h1>
-	<p><a href="../public/index.php">Retour à la liste des billets</a></p>
+
+	<p><a href="../public/index.php">Retour à la liste des chapitres</a></p>
 
 	<div class="news">
 		<h3>
 			<?= htmlspecialchars($post['title']) ?><br />
-			<em>le <?= $post['creation_date_fr'] ?></em>
+			<em>publié le <?= $post['creation_date_fr'] ?></em>
 		</h3>
 
 		<p>
@@ -35,9 +35,45 @@
 	<?php
 		while($comment = $comments->fetch()){
 			?>
-			<p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?> <button id="ReportedComment">Signaler</button></p>
-            <p id="ReportedCommentArea"></p>
+			<p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?> <!--<button id="ReportedComment">Signaler</button>--></p>
+            <!--<p id="ReportedCommentArea"></p>-->
 			<p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+            <p>Numéro du commentaire <?= $comment['id'] ?></p>
+            <p>Numéro du chapitre <?= $post['id'] ?></p>
+            <a href="../public/index.php?action=reportComment&id=<?= $comment['id'] ?>">Signaler</a>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reportComment">
+                Signaler un commentaire
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="reportComment" tabindex="-1" role="dialog" aria-labelledby="reportCommentLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="reportCommentLabel">
+                                Signaler un commentaire
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <p>Êtes-vous sûr(e) de vouloir signaler ce commentaire ?</p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
 			<?php
 		}
