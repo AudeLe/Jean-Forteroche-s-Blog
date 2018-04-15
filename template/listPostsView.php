@@ -1,8 +1,13 @@
 <?php $title = 'Mon blog'; ?>
 
 <?php ob_start(); ?>
-	<h1>Mon super blog !</h1>
-	<p>Derniers billets du blog :</p>
+	<h1>Bienvenue sur mon blog</h1>
+
+    <p>
+        Je souhaite vous faire partager mon ouvrage : "Billet simple pour l'Alaska".
+        Les chapitres seront publiés au fur et à mesure de leur écriture. N'hésitez pas à me faire part de vos remarques et de vos corrections.
+    </p>
+	<p>Derniers chapitres :</p>
 
 	<?php
 		while($data = $posts->fetch()){
