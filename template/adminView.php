@@ -17,10 +17,13 @@
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="myPosts-tab" data-toggle="tab" href="#myPosts" role="tab" aria-controls="myPosts" aria-selected="true">Mes chapitres</a>
+            <a class="nav-link active" id="myPosts-tab" data-toggle="tab" href="../public/index.php?action=getPosts" role="tab" aria-controls="myPosts" aria-selected="true">Mes chapitres</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" id="addAPost-tab" data-toggle="tab" href="#addAPost" role="tab" aria-controls="addAPost" aria-selected="true">Ajouter un chapitre</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="reportedCommentsArea-tab" data-toggle="tab" href="../public/index.php?action=getReportedComments" role="tab" aria-controls="reportedCommentsArea" aria-selected="false">Commentaires signalés</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" id="account-tab" data-toggle="tab" href="#account" role="tab" aria-controls="account" aria-selected="false">Compte</a>
@@ -29,11 +32,9 @@
 
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="myPosts" role="tabpanel" aria-labelledby="myPosts-tab">
-            <a href="../public/index.php?action=getPosts">Afficher les articles</a>
+            <!--<a href="../public/index.php?action=getPosts">Afficher les chapitres</a>-->
 
             <table>
-                <caption>Articles publiés</caption>
-
                 <tr>
                     <th>Titre du chapitre</th>
                     <th>Chapitre</th>
@@ -79,6 +80,38 @@
             </form>
         </div>
 
+        <div class="tab-pane fade" id="reportedCommentsArea" role="tabpanel" aria-labelledby="reportedCommentsArea-tab">
+            <p>Commentaires signalés</p>
+            <a href="../public/index.php?action=getReportedComments">Récupérer les commentaires signalés</a>
+
+            <table>
+                <tr>
+                    <th>Numéro du chapitre</th>
+                    <th>Auteur</th>
+                    <th>Commentaire</th>
+                    <th>Date du commentaire</th>
+                    <th>Supprimer le commentaire</th>
+                </tr>
+
+                <?php
+                while($reportedComment = $reportedVisitorComments->fetch()){
+                    ?>
+                    <tr>
+                        <td><?= htmlspecialchars($reportedComment['id']) ?></td>
+                        <td><?= htmlspecialchars($reportedComment['post_id']) ?></td>
+                        <td><?= nl2br(htmlspecialchars($reportedComment['author'])) ?></td>
+                        <td><?= nl2br(htmlspecialchars($reportedComment['comment'])) ?></td>
+                        <td><?= $reportedComment['comment_date_fr'] ?></td>
+                        <td><a href="../public/index.php?action=deleteComment&id=<?= $reportedComment['id'] ?>">Supprimer le post</a></td>
+                    </tr>
+                    <?php
+                }
+                $reportedVisitorComments->closeCursor();
+                ?>
+            </table>
+
+        </div>
+
         <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
             <h3>Changer son pseudo ou son mot de passe</h3>
             <p>Veuillez entrer vos identifiants actuels</p>
@@ -96,6 +129,7 @@
                 </div>
             </form>
         </div>
+
     </div>
 
 
