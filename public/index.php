@@ -80,6 +80,18 @@
                         }
                     }
 
+                    elseif($_GET['action'] == 'reportComment'){
+                        if(isset($_GET['id']) && $_GET['id'] > 0){
+                            reportComment($_GET['id']);
+                        } else{
+                            throw new Exception('Impossible de signaler ce commentaire.');
+                        }
+                    }
+
+                    elseif($_GET['action'] == 'getReportedComments'){
+                        getReportedComments();
+                    }
+
                     elseif($_GET['action'] == 'editPost'){
                         if(isset($_GET['id']) && $_GET['id'] > 0){
                             editPost($_GET['id']);
