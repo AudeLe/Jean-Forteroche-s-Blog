@@ -171,4 +171,22 @@ namespace Openclassrooms\Blog\Model;
             //die();
             return $memberComments;
         }
+
+        public function reportComment($idComment){
+            $db = $this -> dbConnect();
+            $reportedComment = $db -> prepare('UPDATE comments SET reported = 1 WHERE id = ?');
+            $reportedComment -> execute(array($idComment));
+
+            var_dump($idComment);
+            //die();
+            return $reportedComment;
+        }
+
+        public function getReportedComments(){
+            $db = $this -> dbConnect();
+            $reportedVisitorComments = $db -> query('SELECT id, post_id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE reported = 1 ORDER BY comment_date DESC LIMIT 0,5');
+
+
+            return $reportedVisitorComments;
+        }
     }
