@@ -1,6 +1,6 @@
 <?php
 
-	namespace Openclassrooms\Blog\config;
+	namespace Blog\config;
 
 	class Autoloader {
 
@@ -9,7 +9,7 @@
 		}
 
 		public static function autoload($class){
-			$class = str_replace('Openclassrooms\Blog', '', $class);
+			$class = str_replace('Blog', '', $class);
 			$class = str_replace('\\', '/', $class);
 			require '../'.$class.'.php';
 		}
