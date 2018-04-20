@@ -1,6 +1,6 @@
 <?php
 
-namespace Openclassrooms\Blog\Model;
+namespace Blog\src\DAO;
 
 require_once('DAO.php');
 
