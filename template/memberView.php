@@ -1,9 +1,9 @@
 <?php
-    session_start();
+    /*session_start();
     if(isset($_SESSION['id']) && isset($_SESSION['login'])){
         $loginSession = $_SESSION['login'];
         echo 'Bonjour ' . $loginSession . ' de la page membre.';
-    }
+    }*/
 ?>
 
 <?php $title = htmlspecialchars('Page de profil'); ?>
@@ -27,7 +27,7 @@
 
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="myComments" role="tabpanel" aria-labelledby="myComments-tab">
-            <a href="../public/index.php?action=getComments&login=<?= $loginSession ?>">Afficher mes commentaires</a>
+            
 
             <table>
                 <tr>
@@ -51,6 +51,7 @@
                     </tr>
                     <?php
                 }
+                $memberComments->closeCursor();
                 ?>
             </table>
 
