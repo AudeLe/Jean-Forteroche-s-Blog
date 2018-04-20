@@ -1,6 +1,6 @@
 <?php
 
-	namespace Openclassrooms\Blog\Model;
+	namespace Blog\src\DAO;
 
 	abstract class DAO {
 
