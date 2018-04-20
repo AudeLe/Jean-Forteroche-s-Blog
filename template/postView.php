@@ -40,20 +40,20 @@
 			<p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
             <p>Numéro du commentaire <?= $comment['id'] ?></p>
             <p>Numéro du chapitre <?= $post['id'] ?></p>
-            <a href="../public/index.php?action=reportComment&id=<?= $comment['id'] ?>">Signaler</a>
+            <!--<a href="../public/index.php?action=reportComment&id=<?= $comment['id'] ?>">Signaler</a>-->
 
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reportComment">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reportComment<?= $comment['id']?>">
                 Signaler un commentaire
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="reportComment" tabindex="-1" role="dialog" aria-labelledby="reportCommentLabel" aria-hidden="true">
+            <div class="modal fade" id="reportComment<?= $comment['id']?>" tabindex="-1" role="dialog" aria-labelledby="reportComment<?= $comment['id']?>Label" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
 
                         <div class="modal-header">
-                            <h5 class="modal-title" id="reportCommentLabel">
+                            <h5 class="modal-title" id="reportComment<?= $comment['id']?>Label">
                                 Signaler un commentaire
                             </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -66,9 +66,8 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                            <a href="../public/index.php?action=reportComment&id=<?= $comment['id'] ?>">Signaler</a>
                         </div>
 
                     </div>
