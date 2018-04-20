@@ -1,9 +1,9 @@
 <?php
-    session_start();
+    /*session_start();
     if(isset($_SESSION['id']) && isset($_SESSION['login'])){
         $loginSession = $_SESSION['login'];
         echo 'Bonjour ' . $loginSession . ' de la page membre.';
-    }
+    }*/
 ?>
 
 <?php $title = htmlspecialchars('Page d\'administration'); ?>
@@ -12,15 +12,30 @@
 
     <h1>Page d'administration</h1>
 
-    <a href="../public/index.php">Retourner à la page d'accueil du site</a>
+    <!-- Add a chapter -->
+    <div>
+        <h2>Ajout d'article</h2>
+
+        <form action="../public/index.php?action=addPost" method="post">
+            <div>
+                <label for="title">Titre du chapitre</label><br />
+                <input type="text" id="title" name="title">
+            </div>
+            <div>
+                <label for="article">Nouveau chapitre</label><br />
+                <textarea id="article" name="article"></textarea>
+            </div>
+            <div>
+                <input type="submit" value="Ajouter cet article">
+            </div>
+
+        </form>
+    </div>
 
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="myPosts-tab" data-toggle="tab" href="../public/index.php?action=getPosts" role="tab" aria-controls="myPosts" aria-selected="true">Mes chapitres</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="addAPost-tab" data-toggle="tab" href="#addAPost" role="tab" aria-controls="addAPost" aria-selected="true">Ajouter un chapitre</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" id="reportedCommentsArea-tab" data-toggle="tab" href="../public/index.php?action=getReportedComments" role="tab" aria-controls="reportedCommentsArea" aria-selected="false">Commentaires signalés</a>
@@ -61,24 +76,7 @@
 
         </div>
 
-        <div class="tab-pane fade" id="addAPost" role="tabpanel" aria-labelledby="addAPost-tab">
-            <h3>Ajout d'article</h3>
 
-            <form action="../public/index.php?action=addPost" method="post">
-                <div>
-                    <label for="title">Titre</label><br />
-                    <input type="text" id="title" name="title">
-                </div>
-                <div>
-                    <label for="article">Article</label><br />
-                    <textarea id="article" name="article"></textarea>
-                </div>
-                <div>
-                    <input type="submit" value="Ajouter cet article">
-                </div>
-
-            </form>
-        </div>
 
         <div class="tab-pane fade" id="reportedCommentsArea" role="tabpanel" aria-labelledby="reportedCommentsArea-tab">
             <p>Commentaires signalés</p>
