@@ -1,6 +1,6 @@
 <?php
 
-namespace Openclassrooms\Blog\Model;
+namespace Blog\src\DAO;
 
     require_once('DAO.php');
 
@@ -93,6 +93,7 @@ namespace Openclassrooms\Blog\Model;
 
             $visitorPassword = password_verify($checkPassword, $visitorInformations['password']);
 
+            // Add a condition => if $checkLogin and $checkPassword = Session's Login and Password = true
             if($visitorPassword == true){
                 echo 'Vous avez entré les bons identifiants.';
                 //die();
@@ -160,10 +161,10 @@ namespace Openclassrooms\Blog\Model;
             return $req;
         }
 
-        public function getMemberComments($loginSession){
+        public function getMemberComments($login){
             $db = $this ->dbConnect();
             $memberComments = $db -> prepare('SELECT id, post_id, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE author = ? ORDER BY comment_date DESC LIMIT 0, 5');
-            $memberComments -> execute(array($loginSession));
+            $memberComments -> execute(array($login));
 
             //$memberComments = $req -> fetch();
 
@@ -186,7 +187,7 @@ namespace Openclassrooms\Blog\Model;
             $db = $this -> dbConnect();
             $reportedVisitorComments = $db -> query('SELECT id, post_id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE reported = 1 ORDER BY comment_date DESC LIMIT 0,5');
 
-
+            //var_dump($reportedVisitorComments);
             return $reportedVisitorComments;
         }
     }
