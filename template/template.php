@@ -10,16 +10,42 @@
 
 
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
-        <title><?= $title ?></title>
 		<meta charset = "utf-8"/>
+        <title><?= $title ?></title>
+
+        <!-- Meta-tags -->
+        <meta name="description" content="Blog de Jean Forteroche" />
+        <meta name="keywords" content="Jean Forteroche, chapitres, nouveaux chapitres, commentaires" />
+        <meta name="author" content="Aude Leissen">
+        <meta name="robots" content="index, follow">
+        <meta name="revisit-after" content="3 month">
+        <meta name="language" content="French">
+
+        <!-- Open Graph data -->
+        <meta property="og:title" content="Blog de Jean Forteroche"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="http://audeleissen.com/BlogJeanForteroche"/>
+        <meta property="og:image" content="../public/images/Mt._Hayes_and_the_eastern_Alaska_Range_mountains.jpg"/>
+        <meta property="og:description" content="Blog de Jean Forteroche - Un billet simple pour l'Alaska"/>
+
+        <!-- Twitter Card data-->
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="http://audeleissen.com/BlogJeanForteroche">
+        <meta name="twitter:title" content="Blog de Jean Forteroche">
+        <meta name="twitter:description" content="Blog de Jean Forteroche - Un billet simple pour l'Alaska">
+        <meta name="twitter:creator" content="@AudeL">
+        <meta name="twitter:image" content="../public/images/Mt._Hayes_and_the_eastern_Alaska_Range_mountains.jpg">
+
+        <!-- IE -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content = "width=device-width, initial-scale=1">
 
-        <!--<link rel="stylesheet" href="../public/css/bootstrap-4.1.0/dist/css/bootstrap.css" />-->
+        <!-- Devices -->
+        <meta name="viewport" content = "width = device-width, initial-scale = 1">
+
+        <!-- Stylesheets -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
 		<link rel="stylesheet" href="../public/css/style.css" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -29,7 +55,6 @@
             <script src="https://oss.maxcdn.com/respond/1.4.2/repond.min.js"></script>
         <![endif]-->
 
-        <!-- Ajouter les meta-tags -->
 	</head>
 
 	<body>
@@ -127,8 +152,6 @@
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-
                                     </div>
                                 </div>
                             </div>
@@ -171,8 +194,6 @@
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-
                                     </div>
                                 </div>
                             </div>
@@ -199,13 +220,20 @@
 
 		<?= $content ?>
 
-        <!--<script src = "css/bootstrap-4.1.0/dist/js/bootstrap.js"></script>-->
+        <!-- JavaScript Files -->
+        <!-- Bootstrap -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+        <!-- TinyMCE -->
         <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
         <script>tinymce.init({ selector:'textarea' });</script>
         <!--<script src = "js/moderation.js"></script>-->
-        <script src = "js/connection.js"></script>
+        <!--<script src = "js/connection.js"></script>-->
+
+        <!-- Fontawesome -->
+        <script src="https://use.fontawesome.com/b88df9d43b.js"></script>
+
 	</body>
 </html>
