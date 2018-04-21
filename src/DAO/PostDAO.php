@@ -70,18 +70,11 @@
 		public function deletePost($id){
 			$db = $this -> dbConnect();
 
-			$deletedPost = $db -> prepare('DELETE FROM posts LEFT JOIN comments ON (posts.id = comments.post_id) WHERE posts.id = :id');
+			$deletedPost = $db -> prepare('DELETE posts, comments FROM posts INNER JOIN comments ON (posts.id = comments.post_id) WHERE posts.id = :id');
 			$deletedPost -> execute(array(
 				'id' => $id
 			));
 
 		}
 
-		/*protected function buildClassObject(array $row){
-		    $post = new Post();
-		    $post -> setId($row['id']);
-		    $post -> setTitle($row['title']);
-		    $post -> setContent($row['content']);
-		    return $post;
-        }*/
 	}
