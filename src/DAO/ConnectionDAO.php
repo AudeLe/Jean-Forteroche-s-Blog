@@ -103,31 +103,21 @@ namespace Blog\src\DAO;
             return $visitorInformations;
         }
 
-        public function editInformations($idVisitor, $editLogin, $editPassword, $editPasswordCheck){
+        public function editPassword($idVisitor, $editPassword, $editPasswordCheck){
             $db = $this -> dbConnect();
 
             if($editPassword == $editPasswordCheck){
                 $editPasswordHashed = password_hash($editPassword, PASSWORD_DEFAULT);
 
-                $req = $db -> prepare('UPDATE members SET login = :login, password = :password WHERE id = :id');
+                $req = $db -> prepare('UPDATE members SET password = :password WHERE id = :id');
                 $req -> execute(array(
                     'id' => $idVisitor,
-                    'login' => $editLogin,
                     'password' => $editPasswordHashed
                 ));
-                /*var_dump($req);
-                $visitor = $req -> fetch();
-                var_dump($visitor);
-                die();*/
 
                 header('Location: ../public/index.php');
-                /*if ($visitor['status'] == 'admin'){
-                    header('Location: ../template/adminView.php');
-                } else {
-                    header('Location: ../template/memberView.php');
-                }*/
 
-                echo 'Mot de passe et/ou identifiant modifié(s).';
+                echo 'Mot de passe modifié.';
 
                 //self::checkStatus($req);
 
@@ -137,15 +127,26 @@ namespace Blog\src\DAO;
 
         }
 
-        /*public function checkStatus($req){
-            $visitor = $req -> fetch();
+        public function editLogin($idVisitor, $editLogin){
+            $db = $this->dbConnect();
 
-            if ($visitor['status'] == 'admin'){
-                header('Location: ../template/adminView.php');
+            $loginExists = $db -> prepare('SELECT login FROM members WHERE login = :login');
+            $loginExists -> execute(array(
+                'login' => $editLogin
+            ));
+
+            if($donnees = $loginExists -> fetch()){
+                echo 'Ce pseudo est déjà utilisé.';
             } else {
-                header('Location: ../template/memberView.php');
+                $updateLogin = $db -> prepare('UPDATE members SET login = :login WHERE id = :id');
+                $updateLogin -> execute(array(
+                    'login' => $editLogin,
+                    'id' => $idVisitor
+                ));
+
+                echo 'Pseudo modifié.';
             }
-        }*/
+        }
 
         public function getPosts(){
             $db = $this -> dbConnect();

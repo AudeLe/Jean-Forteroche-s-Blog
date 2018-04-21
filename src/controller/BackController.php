@@ -54,10 +54,16 @@
             require('../template/editInformations.php');
         }
 
-        public function editInformations($idVisitor, $editLogin, $editPassword, $editPasswordCheck){
+        public function editPassword($idVisitor, $editPassword, $editPasswordCheck){
             //$connectionManager = new \Openclassrooms\Blog\Model\ConnectionDAO();
 
-            $this->connectionManager->editInformations($idVisitor, $editLogin, $editPassword, $editPasswordCheck);
+            $this->connectionManager->editPassword($idVisitor, $editPassword, $editPasswordCheck);
+        }
+
+        public function editLogin($idVisitor, $editLogin){
+
+            $this->connectionManager->editLogin($idVisitor, $editLogin);
+
         }
 
         public function reportComment($idComment){
