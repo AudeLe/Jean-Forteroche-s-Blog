@@ -163,11 +163,19 @@
                         }
                     }
 
-                    elseif($_GET['action'] == 'editInformations'){
-                        if(!empty($_POST['idVisitor']) && !empty($_POST['editLogin']) && !empty($_POST['editPassword']) && !empty($_POST['editPasswordCheck'])){
-                            $this->backController->editInformations($_POST['idVisitor'], $_POST['editLogin'], $_POST['editPassword'], $_POST['editPasswordCheck']);
+                    elseif($_GET['action'] == 'editPassword'){
+                        if(!empty($_POST['idVisitor']) && !empty($_POST['editPassword']) && !empty($_POST['editPasswordCheck'])){
+                            $this->backController->editPassword($_POST['idVisitor'], $_POST['editPassword'], $_POST['editPasswordCheck']);
                         } else {
                             throw new Exception('Vous n\'avez pas entré les bonnes informations.');
+                        }
+                    }
+
+                    elseif($_GET['action'] == 'editLogin'){
+                        if(!empty($_POST['idVisitor']) && !empty($_POST['editLogin'])){
+                            $this->backController->editLogin($_POST['idVisitor'], $_POST['editLogin']);
+                        } else {
+                            throw new Exception('Le pseudo que vous souhaitez utiliser est déjà pris.');
                         }
                     }
 
