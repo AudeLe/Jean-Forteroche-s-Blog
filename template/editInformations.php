@@ -6,19 +6,28 @@
     $idVisitor = $visitorInformations['id'];
 ?>
 
-<h2>Changer son pseudo ou son mot de passe</h2>
-<p>Veuillez entrer votre nouveau mot de passe</p>
-<form action="../public/index.php?action=editInformations" method="post">
-    <!--<div>
-        <label for="checkLogin">Pseudo</label><br />
-        <input type="text" id="checkLogin" name="checkLogin" />
-    </div>-->
+<h3>Changer son pseudo ou son mot de passe</h3>
+
+<p>Changer son pseudonyme</p>
+<form action="../public/index.php?action=editLogin" method="post">
     <div>
         <input type="text" id="idVisitor" name="idVisitor" value="<?= $idVisitor ?>" />
     </div>
     <div>
         <label for="editLogin">Nouveau pseudonyme</label><br />
         <input type="text" id="editLogin" name="editLogin" />
+    </div>
+    <div>
+        <input type="submit" value="Modifier mon pseudo" />
+    </div>
+</form>
+
+<p>Changer son mot de passe</p>
+<p>Veuillez entrer votre nouveau mot de passe</p>
+<form action="../public/index.php?action=editPassword" method="post">
+
+    <div>
+        <input type="text" id="idVisitor" name="idVisitor" value="<?= $idVisitor ?>" />
     </div>
     <div>
         <label for="editPassword">Mot de passe</label><br />
