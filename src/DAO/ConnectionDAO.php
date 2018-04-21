@@ -72,7 +72,6 @@ namespace Blog\src\DAO;
                         return $connectionDetails;
                     }
 
-                    return $connectionDetails;
                 } else {
                     echo 'Mauvais identifiant ou mot de passe.';
                 }
