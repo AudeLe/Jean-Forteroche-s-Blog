@@ -41,7 +41,7 @@
 
             $affectedPost = $this->postManager->addPost($title, $article);
 
-            header('Location: ../public/adminView.php');
+            header('Location: ../public/index.php');
         }
 
         public function addComment($postId, $author, $comment){
