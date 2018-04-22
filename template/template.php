@@ -217,8 +217,10 @@
 
         </div>
 
+        <div id="content">
+            <?= $content ?>
+        </div>
 
-		<?= $content ?>
 
         <!-- JavaScript Files -->
         <!-- Bootstrap -->
