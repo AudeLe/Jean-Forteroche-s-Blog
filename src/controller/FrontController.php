@@ -2,6 +2,7 @@
 
     namespace Blog\src\controller;
 
+    use Blog\src\classes\View;
     use Blog\src\DAO\PostDAO;
     use Blog\src\DAO\CommentDAO;
 
@@ -21,18 +22,29 @@
             //$postManager = new PostDAO();
             $posts = $this->postManager-> getPosts();
             //require_once('../template/adminView.php');
-            require('../template/listPostsView.php');
+            //require('../template/listPostsView.php');
+
+            $view = new View('listPostsView');
+            $view->render([
+                'posts' => $posts
+            ]);
 
         }
 
-        public function post(){
+        public function post($postId){
             //$postManager = new PostDAO();
             //$commentManager = new CommentDAO();
 
-            $post = $this->postManager->getPost($_GET['id']);
-            $comments = $this->commentManager->getComments($_GET['id']);
+            $post = $this->postManager->getPost($postId);
+            $comments = $this->commentManager->getComments($postId);
 
-            require('../template/postView.php');
+            //require('../template/postView.php');
+
+            $view = new View('postView');
+            $view->render([
+                'post' => $post,
+                'comments' => $comments
+            ]);
         }
 
         // Ajout d'article
@@ -40,6 +52,14 @@
             //$postManager = new PostDAO();
 
             $affectedPost = $this->postManager->addPost($title, $article);
+
+            //header('Location: ../public/index.php');
+
+            $view = new View('adminView');
+            $view->render([
+               'title' => $title,
+               'content' => $article
+            ]);
 
             header('Location: ../public/index.php');
         }
