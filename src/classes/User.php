@@ -1,6 +1,6 @@
 <?php
 
-    namespace Openclassrooms\Blog\Model;
+    namespace Blog\src\classes;
 
     class User{
 
