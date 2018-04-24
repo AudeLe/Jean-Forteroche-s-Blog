@@ -23,7 +23,7 @@
             return $this-> post_id;
         }
 
-        public function setPostIt($post_id){
+        public function setPostId($post_id){
             $this->post_id = $post_id;
         }
 
