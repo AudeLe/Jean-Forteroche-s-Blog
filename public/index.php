@@ -1,14 +1,11 @@
 <?php
     require('../config/dev.php');
-	//require('../src/controller/FrontController.php');
-	//require('../src/controller/BackController.php');
 	require('../config/Autoloader.php');
-	//require('../config/Autoloader.php');
-	Blog\config\Autoloader::register();
 
-    //use Openclassrooms\Blog\Model;
+	session_start();
+	session_regenerate_id(true);
 
-    //require('../vendor/autoload.php');
+    Blog\config\Autoloader::register();
 
     $router = new Blog\config\Router();
 	$router->requestRouter();
