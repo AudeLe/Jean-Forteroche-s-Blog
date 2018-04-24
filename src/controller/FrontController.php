@@ -19,10 +19,8 @@
         }
 
         public function listPosts(){
-            //$postManager = new PostDAO();
+
             $posts = $this->postManager-> getPosts();
-            //require_once('../template/adminView.php');
-            //require('../template/listPostsView.php');
 
             $view = new View('listPostsView');
             $view->render([
@@ -32,16 +30,14 @@
         }
 
         public function post($postId){
-            //$postManager = new PostDAO();
-            //$commentManager = new CommentDAO();
 
+	        $posts = $this->postManager->getPosts();
             $post = $this->postManager->getPost($postId);
             $comments = $this->commentManager->getComments($postId);
 
-            //require('../template/postView.php');
-
             $view = new View('postView');
             $view->render([
+                'posts' => $posts,
                 'post' => $post,
                 'comments' => $comments
             ]);
@@ -49,11 +45,8 @@
 
         // Ajout d'article
         public function addPost($title, $article){
-            //$postManager = new PostDAO();
 
-            $affectedPost = $this->postManager->addPost($title, $article);
-
-            //header('Location: ../public/index.php');
+            $this->postManager->addPost($title, $article);
 
             $view = new View('adminView');
             $view->render([
@@ -65,7 +58,6 @@
         }
 
         public function addComment($postId, $author, $comment){
-            //$commentManager = new CommentDAO();
 
             $affectedLines = $this -> commentManager->postComment($postId, $author, $comment);
 
@@ -77,52 +69,66 @@
         }
 
         public function editComment($id){
-            //$commentManager = new CommentDAO();
 
-            $editedComment = $this->commentManager->editComment($id);
+            $this->commentManager->editComment($id);
 
-            require('../template/editCommentView.php');
+            $view = new View('editCommentView');
+            $view->render($id);
+
         }
 
         // Rediriger vers la page du post
         public function editedComment($id, $newComment){
-            //$commentManager = new CommentDAO();
 
-            $newlyEditedComment = $this->commentManager->editedComment($id, $newComment);
+            $this->commentManager->editedComment($id, $newComment);
 
             header('Location: ../public/index.php');
         }
 
         public function deleteComment($id){
-            //$commentManager = new CommentDAO();
 
-            $deletedComment = $this->commentManager->deleteComment($id);
+           $this->commentManager->deleteComment($id);
 
             header('Location: ../public/index.php');
         }
 
         public function editPost($id){
-            //$postManager = new PostDAO();
 
-            $editedPost = $this->postManager->editPost($id);
+            $editPost = $this->postManager->editPost($id);
 
-            require('../template/editPostView.php');
+            $view = new View('editPostView');
+            $view->render([
+                'post' => $editPost
+            ]);
         }
 
         public function editedPost($id, $newTitle, $newPost){
-            //$postManager = new PostDAO();
 
-            $newlyEditedPost = $this->postManager->editedPost($id, $newTitle, $newPost);
+            $this->postManager->editedPost($id, $newTitle, $newPost);
 
             header('Location: ../public/index.php');
         }
 
         public function deletePost($id){
-            //$postManager = new PostDAO();
 
             $deletedPost = $this->postManager->deletePost($id);
 
-            header('Location: ../public/index.php');
         }
+
+        public function getMemberComments($login){
+            $comments = $this->commentManager->getMemberComments($login);
+
+            $view = new View('memberView');
+            $view->render([
+                'comments' => $comments
+            ]);
+        }
+
+        public function reportComment($id, $postId){
+
+            $this->commentManager->reportComment($id, $postId);
+
+        }
+
 
     }
