@@ -50,24 +50,12 @@
 		    $sql = 'SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?';
             $result = $this->sql($sql, [$id]);
             $row = $result -> fetch();
+
             if($row){
                 return $this->buildObject($row);
             } else {
                 echo 'Aucun chapitre existant avec cet identifiant.';
             }
-
-		    //$db = $this -> dbConnect();
-			//$req = $db -> prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
-			//$req -> execute(array($postId));
-			//$post = $req -> fetch();
-
-            /*if ($req){
-                return $this -> buildClassObject($req);
-            } else {
-                throw new Exception ('Il n\'y a pas d\'article correspondant à cet identifiant.');
-            }*/
-
-			//return $post;
 		}
 
 		public function addPost($title, $article){
@@ -78,12 +66,7 @@
                 'content' => $article
             ]);
 
-		    //$db = $this -> dbConnect();
-			
-			//$newPost = $db -> prepare('INSERT INTO posts(title, content, creation_date) VALUES (?, ?, NOW())');
-			//$affectedPost = $newPost -> execute(array($title, $article));
-
-			//return $affectedPost;
+            header('Location: ../public/index.php?action=getChaptersAndReportedComments');
 		}
 
 		public function editPost($id){
@@ -96,13 +79,6 @@
             } else {
                 echo 'Aucun chapitre existant avec cet identifiant.';
             }
-
-		    //$db = $this -> dbConnect();
-
-			//$post = $db -> prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d%m%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
-			//$post -> execute(array($id));
-
-			//return $post;
 		}
 
 		public function editedPost($id, $newTitle, $newPost){
@@ -113,34 +89,24 @@
 		        'newTitle' => $newTitle,
                 'newPost' => $newPost
             ]);
-
-		    //$db = $this -> dbConnect();
-
-			//$newlyEditedPost = $db -> prepare('UPDATE posts SET title = :newTitle, content = :newPost WHERE id = :id');
-			/*$newlyEditedPost = $newlyEditedPost -> execute(array(
-				'id' => $id,
-				'newTitle' => $newTitle,
-				'newPost' => $newPost
-			));*/
-
-			//return $newlyEditedPost;
 		}
 
 
 		public function deletePost($id){
 
-		    $sql = 'DELETE posts, comments FROM posts INNER JOIN comments ON (posts.id = comments.post_id) WHERE posts.id = :id';
-		    $this->sql($sql, [
-		        'id' => $id
-            ]);
+		    $sql = 'SELECT comment FROM comments WHERE post_id = ?';
+		    $result = $this->sql($sql, [$id]);
+		    $row = $result -> fetch();
 
-			//$db = $this -> dbConnect();
+		    if($row){
+                $sql = 'DELETE posts, comments FROM posts INNER JOIN comments ON (posts.id = comments.post_id) WHERE posts.id = ?';
+                $this->sql($sql, [$id]);
+            } else{
+		        $sql = 'DELETE FROM posts WHERE id = ?';
+		        $this->sql($sql, [$id]);
+            }
 
-			/*$deletedPost = $db -> prepare('DELETE posts, comments FROM posts INNER JOIN comments ON (posts.id = comments.post_id) WHERE posts.id = :id');
-			$deletedPost -> execute(array(
-				'id' => $id
-			));*/
-
+            header('Location: ../public/index.php?action=getChaptersAndReportedComments');
 		}
 
 		private function buildObject(array $row){
