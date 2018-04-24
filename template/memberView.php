@@ -1,14 +1,4 @@
-<?php
-    /*session_start();
-    if(isset($_SESSION['id']) && isset($_SESSION['login'])){
-        $loginSession = $_SESSION['login'];
-        echo 'Bonjour ' . $loginSession . ' de la page membre.';
-    }*/
-?>
-
-<?php $title = htmlspecialchars('Page de profil'); ?>
-
-<?php ob_start(); ?>
+<?php $this->title = htmlspecialchars('Page de profil'); ?>
 
 
     <h1>Page de profil</h1>
@@ -39,19 +29,17 @@
                 </tr>
 
                 <?php
-                //var_dump($memberComments);
-                while($memberComment = $memberComments->fetch()){
+                foreach ($comments as $comment){
                     ?>
-                    <tr>
-                        <td><?= $memberComment['post_id'] ?></td>
-                        <td><?= nl2br(htmlspecialchars($memberComment['comment'])) ?></td>
-                        <td><?= $memberComment['comment_date_fr'] ?></td>
-                        <td><a href="../public/index.php?action=editComment&id=<?= $memberComment['id']?>">Modifier le commentaire</a></td>
-                        <td><a href="../public/index.php?action=deleteComment&id=<?= $memberComment['id'] ?>">Supprimer le commentaire</a></td>
-                    </tr>
+                <tr>
+                    <td><?= $comment->getPostId(); ?></td>
+                    <td><?= $comment->getComment(); ?></td>
+                    <td><?= $comment->getCommentDate(); ?></td>
+                    <td><a href="../public/index.php?action=editComment&id=<?= $comment->getId(); ?>">Modifier le commentaire</a></td>
+                    <td><a href="../public/index.php?action=deleteComment&id=<?= $comment->getId(); ?>">Supprimer le commentaire</a></td>
+                </tr>
                     <?php
                 }
-                $memberComments->closeCursor();
                 ?>
             </table>
 
@@ -63,7 +51,7 @@
             <form action="../public/index.php?action=checkInformations" method="post">
                 <div>
                     <label for="checkLogin">Pseudo</label><br />
-                    <input type="text" id="checkLogin" name="checkLogin" />
+                    <input type="text" id="checkLogin" name="checkLogin" value="<?= $_SESSION['login'] ?>" readonly/>
                 </div>
                 <div>
                     <label for="checkPassword">Mot de passe</label><br />
@@ -75,8 +63,3 @@
             </form>
         </div>
     </div>
-
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require('template.php'); ?>
