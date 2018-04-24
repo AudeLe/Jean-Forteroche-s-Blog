@@ -1,14 +1,5 @@
-<?php
-    /*session_start();
-    if(isset($_SESSION['id']) && isset($_SESSION['login'])){
-        $loginSession = $_SESSION['login'];
-        echo 'Bonjour ' . $loginSession . ' de la page membre.';
-    }*/
-?>
+<?php $this->title = 'Page d\'administration'; ?>
 
-<?php $title = htmlspecialchars('Page d\'administration'); ?>
-
-<?php ob_start(); ?>
 
     <h1>Page d'administration</h1>
 
@@ -35,10 +26,10 @@
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="myPosts-tab" data-toggle="tab" href="../public/index.php?action=getPosts" role="tab" aria-controls="myPosts" aria-selected="true">Mes chapitres</a>
+            <a class="nav-link active" id="myPosts-tab" data-toggle="tab" href="#myPosts" role="tab" aria-controls="myPosts" aria-selected="true">Mes chapitres</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="reportedCommentsArea-tab" data-toggle="tab" href="../public/index.php?action=getReportedComments" role="tab" aria-controls="reportedCommentsArea" aria-selected="false">Commentaires signalés</a>
+            <a class="nav-link" id="reportedCommentsArea-tab" data-toggle="tab" href="#reportedCommentsArea" role="tab" aria-controls="reportedCommentsArea" aria-selected="false">Commentaires signalés</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" id="account-tab" data-toggle="tab" href="#account" role="tab" aria-controls="account" aria-selected="false">Compte</a>
@@ -47,8 +38,6 @@
 
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="myPosts" role="tabpanel" aria-labelledby="myPosts-tab">
-            <!--<a href="../public/index.php?action=getPosts">Afficher les chapitres</a>-->
-
             <table>
                 <tr>
                     <th>Titre du chapitre</th>
@@ -59,19 +48,19 @@
                 </tr>
 
                 <?php
-                while($data = $postsAdmin->fetch()){
+
+                foreach($posts as $post){
                     ?>
                     <tr>
-                        <td><?= htmlspecialchars($data['title']) ?></td>
-                        <td><?= nl2br(htmlspecialchars($data['content'])) ?></td>
-                        <td><?= $data['creation_date_fr'] ?></td>
-                        <td><a href="../public/index.php?action=editPost&id=<?= $data['id'] ?>">Editer le post</a></td>
-                        <td><a href="../public/index.php?action=deletePost&id=<?= $data['id'] ?>">Supprimer le post</a></td>
+                        <td><?= $post->getTitle(); ?></td>
+                        <td><?= $post->getContent(); ?></td>
+                        <td><?= $post->getCreationDate(); ?></td>
+                        <td><a href="../public/index.php?action=editPost&id=<?= $post->getId(); ?>">Editer le post</a></td>
+                        <td><a href="../public/index.php?action=deletePost&id=<?= $post->getId(); ?>">Supprimer le post</a></td>
                     </tr>
-                    <?php
-                }
-                $postsAdmin->closeCursor();
-                ?>
+                <?php
+                    }
+                    ?>
             </table>
 
         </div>
@@ -79,9 +68,6 @@
 
 
         <div class="tab-pane fade" id="reportedCommentsArea" role="tabpanel" aria-labelledby="reportedCommentsArea-tab">
-            <p>Commentaires signalés</p>
-            <a href="../public/index.php?action=getReportedComments">Récupérer les commentaires signalés</a>
-
             <table>
                 <tr>
                     <th>Numéro du chapitre</th>
@@ -92,19 +78,18 @@
                 </tr>
 
                 <?php
-                while($reportedComment = $reportedVisitorComments->fetch()){
+                foreach($comments as $comment){
                     ?>
                     <tr>
-                        <td><?= htmlspecialchars($reportedComment['id']) ?></td>
-                        <td><?= htmlspecialchars($reportedComment['post_id']) ?></td>
-                        <td><?= nl2br(htmlspecialchars($reportedComment['author'])) ?></td>
-                        <td><?= nl2br(htmlspecialchars($reportedComment['comment'])) ?></td>
-                        <td><?= $reportedComment['comment_date_fr'] ?></td>
-                        <td><a href="../public/index.php?action=deleteComment&id=<?= $reportedComment['id'] ?>">Supprimer le post</a></td>
+
+                        <td><?= $comment->getPostId(); ?></td>
+                        <td><?= $comment->getAuthor(); ?></td>
+                        <td><?= $comment->getComment(); ?></td>
+                        <td><?= $comment->getCommentDate(); ?></td>
+                        <td><a href="../public/index.php?action=deleteComment&id=<?= $comment->getId(); ?>">Supprimer le post</a></td>
                     </tr>
-                    <?php
+                <?php
                 }
-                $reportedVisitorComments->closeCursor();
                 ?>
             </table>
 
@@ -116,7 +101,7 @@
             <form action="../public/index.php?action=checkInformations" method="post">
                 <div>
                     <label for="checkLogin">Pseudo</label><br />
-                    <input type="text" id="checkLogin" name="checkLogin" />
+                    <input type="text" id="checkLogin" name="checkLogin" value="<?= $_SESSION['login'] ?>" readonly/>
                 </div>
                 <div>
                     <label for="checkPassword">Mot de passe</label><br />
@@ -130,7 +115,3 @@
 
     </div>
 
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require('template.php'); ?>
