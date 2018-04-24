@@ -44,13 +44,13 @@
                         }
                     }
 
-                    elseif($_GET['action'] == 'getPosts'){
-                        $this->backController->getPosts();
+                    elseif($_GET['action'] == 'getChaptersAndReportedComments'){
+                        $this->backController->getChaptersAndReportedComments();
                     }
 
-                    elseif($_GET['action'] == 'getComments'){
+                    elseif($_GET['action'] == 'getMemberComments'){
                         if(isset($_GET['login'])){
-                            $this->backController->getComments($_GET['login']);
+                            $this->frontController->getMemberComments($_GET['login']);
                         } else {
                             throw new Exception('Veuillez vous connecter afin d\'accéder à vos commentaires.');
                         }
@@ -102,15 +102,11 @@
                     }
 
                     elseif($_GET['action'] == 'reportComment'){
-                        if(isset($_GET['id']) && $_GET['id'] > 0){
-                            $this->backController->reportComment($_GET['id']);
+                        if(isset($_GET['id']) && $_GET['id'] > 0 && ($_GET['postId'] && $_GET['postId'] > 0)){
+                            $this->frontController->reportComment($_GET['id'], $_GET['postId']);
                         } else{
                             throw new Exception('Impossible de signaler ce commentaire.');
                         }
-                    }
-
-                    elseif($_GET['action'] == 'getReportedComments'){
-                        $this->backController->getReportedComments();
                     }
 
                     elseif($_GET['action'] == 'editPost'){
@@ -153,6 +149,14 @@
                         } else {
                             throw new Exception('Impossible de vous identifier.');
                         }
+                    }
+
+                    /*elseif($_GET['action'] == 'getLogin'){
+                        $this->backController->getLogin();
+                    }*/
+
+                    elseif($_GET['action'] == 'logOut'){
+                        $this->backController->logOut();
                     }
 
                     elseif($_GET['action'] == 'checkInformations'){
