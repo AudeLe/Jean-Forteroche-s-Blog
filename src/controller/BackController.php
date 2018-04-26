@@ -7,13 +7,18 @@
 
     class BackController{
 
+        /**
+         * BackController constructor.
+         */
         public function __construct(){
-
             $this->connectionManager = new ConnectionDAO();
         }
 
+        /**
+         *
+         */
+        // Recover all the chapters and all the reported comments to display them on the admin page
         public function getChaptersAndReportedComments(){
-
             $posts = $this->connectionManager->getChapters();
             $comments = $this->connectionManager->getReportedComments();
 
@@ -26,6 +31,11 @@
 
         }
 
+        /**
+         * @param $login
+         * @param $passwordVisitor
+         * @param $passwordVisitorCheck
+         */
         // Registration on the website
         public function registration($login, $passwordVisitor, $passwordVisitorCheck){
 
@@ -35,6 +45,10 @@
             $view->render([]);
         }
 
+        /**
+         * @param $login
+         * @param $passwordVisitor
+         */
         // Connection on the website
         public function connection($login, $passwordVisitor){
 
@@ -43,6 +57,10 @@
         }
 
 
+        /**
+         *
+         */
+        // Log out the website
         public function logOut(){
             $this->connectionManager->logOut();
 
@@ -50,6 +68,11 @@
             $view->render([]);
         }
 
+        /**
+         * @param $checkLogin
+         * @param $checkPassword
+         */
+        // Verify the person's credentials before allowing him/her to change them
         public function checkInformations($checkLogin, $checkPassword){
 
             $visitorInformations = $this->connectionManager->checkInformations($checkLogin, $checkPassword);
@@ -57,18 +80,32 @@
             require('../template/editInformations.php');
         }
 
+        /**
+         * @param $idVisitor
+         * @param $editPassword
+         * @param $editPasswordCheck
+         */
+        // Change the person's password
         public function editPassword($idVisitor, $editPassword, $editPasswordCheck){
-            //$connectionManager = new \Openclassrooms\Blog\Model\ConnectionDAO();
 
             $this->connectionManager->editPassword($idVisitor, $editPassword, $editPasswordCheck);
         }
 
+        /**
+         * @param $idVisitor
+         * @param $editLogin
+         */
+        // Change the person's login
         public function editLogin($idVisitor, $editLogin){
 
             $this->connectionManager->editLogin($idVisitor, $editLogin);
 
         }
 
+        /**
+         * @param $id
+         */
+        // Allow the person's to delete their account
         public function deletionAccount($id){
             $this->connectionManager->logOut();
             $this->connectionManager->deletionAccount($id);
