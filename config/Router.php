@@ -168,6 +168,15 @@
                         }
                     }
 
+                    elseif($_GET['action'] == 'deletionAccount'){
+                        if(isset($_GET['id']) && $_GET['id'] > 0){
+                            $this->backController->deletionAccount($_GET['id']);
+                        } else {
+                            throw new \Exception('Impossible de supprimer ce compte.');
+                        }
+
+                    }
+
                 } else {
                     $this->frontController->listPosts();
                 }
