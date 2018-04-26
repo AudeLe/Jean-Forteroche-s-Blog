@@ -8,32 +8,34 @@
 
 	class FrontController{
 
+        /**
+         * FrontController constructor.
+         */
 	    public function __construct(){
 	        $this->postManager = new PostDAO();
 	        $this->commentManager = new CommentDAO();
         }
 
+                    /* ----- POST ----- */
+
+        /**
+         *
+         */
+        // Display all the posts/chapters - Home page
         public function listPosts(){
-            //$pages = $this->postManager->paginationChapters();
             $posts = $this->postManager-> getPosts();
 
             $view = new View('listPostsView');
             $view->render([
                 'posts' => $posts
-                //'pages' => $pages
             ]);
 
         }
 
-        /*public function pagination($nbPage){
-            $pages = $this->postManager->pagination($nbPage);
-
-	        $view = new View('listPostsView');
-	        $view ->render([
-	            'pages' => $pages
-            ]);
-        }*/
-
+        /**
+         * @param $postId
+         */
+        // Display a specific post/chapter
         public function post($postId){
 
 	        $posts = $this->postManager->getPostsInsert();
@@ -48,7 +50,11 @@
             ]);
         }
 
-        // Ajout d'article
+        /**
+         * @param $title
+         * @param $article
+         */
+        // Add a post/chapter
         public function addPost($title, $article){
 
             $this->postManager->addPost($title, $article);
@@ -59,44 +65,13 @@
                'content' => $article
             ]);
 
-            header('Location: ../public/index.php');
+            header('Location: ../public/index.php?action=getChaptersAndReportedComments');
         }
 
-        public function addComment($postId, $author, $comment){
-
-            $affectedLines = $this -> commentManager->postComment($postId, $author, $comment);
-
-            if($affectedLines === false){
-                throw new Exception('Impossible d\'ajouter le commentaire !');
-            } else {
-                header('Location: ../public/index.php?action=post&id=' . $postId);
-            }
-        }
-
-        public function editComment($id){
-
-            $this->commentManager->editComment($id);
-
-            $view = new View('editCommentView');
-            $view->render($id);
-
-        }
-
-        // Rediriger vers la page du post
-        public function editedComment($id, $newComment){
-
-            $this->commentManager->editedComment($id, $newComment);
-
-            header('Location: ../public/index.php');
-        }
-
-        public function deleteComment($id){
-
-           $this->commentManager->deleteComment($id);
-
-            header('Location: ../public/index.php');
-        }
-
+        /**
+         * @param $id
+         */
+        // Recover the post the admin wants to change
         public function editPost($id){
 
             $editPost = $this->postManager->editPost($id);
@@ -107,6 +82,12 @@
             ]);
         }
 
+        /**
+         * @param $id
+         * @param $newTitle
+         * @param $newPost
+         */
+        // Recording of the changes made on the post/chapter
         public function editedPost($id, $newTitle, $newPost){
 
             $this->postManager->editedPost($id, $newTitle, $newPost);
@@ -114,12 +95,86 @@
             header('Location: ../public/index.php');
         }
 
+        /**
+         * @param $id
+         */
+        // Delete the post/chapter
         public function deletePost($id){
 
-            $deletedPost = $this->postManager->deletePost($id);
+            $this->postManager->deletePost($id);
 
         }
 
+                    /* ----- COMMENT ----- */
+
+        /**
+         * @param $postId
+         * @param $author
+         * @param $comment
+         */
+        // Add a comment
+        public function addComment($postId, $author, $comment){
+
+            $this -> commentManager->postComment($postId, $author, $comment);
+
+            header('Location: ../public/index.php?action=post&id=' . $postId);
+        }
+
+        /**
+         * @param $id
+         */
+        // Recover the comment the member wants to edit
+        public function editComment($id){
+
+            $comment=$this->commentManager->editComment($id);
+
+            $view = new View('editCommentView');
+            $view->render([
+                'comment' => $comment
+            ]);
+
+        }
+
+        /**
+         * @param $id
+         * @param $newComment
+         */
+        // Recording of the changes on the database
+        public function editedComment($id, $memberLogin, $newComment){
+
+            $this->commentManager->editedComment($id, $newComment);
+
+            header('Location: ../public/index.php?action=getMemberComments&login='.$memberLogin.'');
+        }
+
+        /**
+         * @param $id
+         */
+        // Deletion of a comment
+        public function deleteComment($id){
+
+           $this->commentManager->deleteComment($id);
+
+            header('Location: ../public/index.php');
+        }
+
+        /**
+         * @param $id
+         * @param $postId
+         */
+        // Report the comment
+        public function reportComment($id, $postId){
+
+            $this->commentManager->reportComment($id, $postId);
+
+        }
+
+                    /* ----- MEMBER PAGE ----- */
+
+        /**
+         * @param $login
+         */
+        // When a member is connected, allowed to recover his/her comments
         public function getMemberComments($login){
             $comments = $this->commentManager->getMemberComments($login);
 
@@ -128,12 +183,5 @@
                 'comments' => $comments
             ]);
         }
-
-        public function reportComment($id, $postId){
-
-            $this->commentManager->reportComment($id, $postId);
-
-        }
-
 
     }
