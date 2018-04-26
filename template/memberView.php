@@ -32,7 +32,7 @@
                 foreach ($comments as $comment){
                     ?>
                 <tr>
-                    <td><?= $comment->getPostId(); ?></td>
+                    <td><?= $comment->getPostId()->getTitle(); ?></td>
                     <td><?= $comment->getComment(); ?></td>
                     <td><?= $comment->getCommentDate(); ?></td>
                     <td><a href="../public/index.php?action=editComment&id=<?= $comment->getId(); ?>">Modifier le commentaire</a></td>
