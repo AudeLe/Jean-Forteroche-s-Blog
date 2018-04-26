@@ -147,13 +147,16 @@
 
         public function getReportedComments(){
 
-            $sql = 'SELECT id, post_id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE reported = 1 ORDER BY comment_date DESC LIMIT 0,5';
+            $sql = 'SELECT posts.id, posts.title, comments.id, comments.post_id, comments.author, comments.comment, DATE_FORMAT(comments.comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr 
+                    FROM comments, posts 
+                    WHERE reported = 1 
+                    ORDER BY comment_date DESC LIMIT 0,5';
             $result = $this->sql($sql);
 
             $comments = [];
             foreach($result as $row){
                 $commentId = $row['id'];
-                $comments[$commentId] = $this->buildObjectComment($row);
+                $comments[$commentId] = $this->buildObjectJoin($row);
             }
             return $comments;
 
@@ -169,10 +172,12 @@
             return $post;
         }
 
-        private function buildObjectComment(array $row){
+        private function buildObjectJoin(array $row){
+            $post = new Post();
+            $post->setTitle($row['title']);
             $comment = new Comment();
             $comment->setId($row['id']);
-            $comment->setPostId($row['post_id']);
+            $comment->setPostId($post);
             $comment->setAuthor(($row['author']));
             $comment->setComment($row['comment']);
             $comment->setCommentDate($row['comment_date_fr']);
