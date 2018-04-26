@@ -4,7 +4,6 @@
 
 	use Blog\src\classes\Post;
 
-
 	class PostDAO extends DAO{
 
 		public function getPosts(){
@@ -33,15 +32,13 @@
 		        $posts[$postId] = $this -> buildObject($row);
             }
 
-            for($i = 1; $i <= $nbPage; $i++){
-                if($i == $cPage){
-                    echo "$i";
-                } else {
-                    echo "<a href =\"../public/index.php?action=listPosts&p=$i\">$i</a>";
-                }
+            $page = [];
+
+		    for ($i = 1; $i <= $nbPage; $i++){
+		        $page[$i] = '<a href ="../public/index.php?action=listPosts&p='.$i.'">'.$i.'</a>';
             }
 
-            return $posts;
+            return [$posts, $page];
 
 		}
 
@@ -57,6 +54,20 @@
                 echo 'Aucun chapitre existant avec cet identifiant.';
             }
 		}
+
+		public function getPostsInsert(){
+
+            $sql = 'SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC';
+            $result = $this->sql($sql);
+            $posts = [];
+
+            foreach($result as $row){
+                $postId = $row['id'];
+                $posts[$postId] = $this -> buildObject($row);
+            }
+
+            return $posts;
+        }
 
 		public function addPost($title, $article){
 
