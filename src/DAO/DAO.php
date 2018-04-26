@@ -2,43 +2,48 @@
 
 	namespace Blog\src\DAO;
 
-	//require ('../config/dev.php');
 	use PDO;
-	use Exception;
 
 	abstract class DAO {
 
-        //const DB_HOST = 'mysql:host=localhost;dbname=blog;charset=utf8';
-        //const DB_USER = 'root';
-        //const DB_PASS = '';
-
 		private $connection;
 
+        /**
+         * @return PDO
+         */
 		private function checkConnection(){
-			// Vérifie si la connexion est nulle et fait appel à dbConnect
+			// Verify if the connection is null and 'call' getConnection()
 			if($this->connection == null){
 				return $this -> getConnection();
 			}
 
-			// Si la connexion existe, elle est renvoyée, inutile de refaire une connexion
+			// If the connection is already established, it's returned. No need to do another one.
 			return $this->connection;
 		}
 
+        /**
+         * @return PDO
+         */
 		private function getConnection(){
 
-			// Tentative de connexion à notre base de données
+			// Trying to connect to the database
 			try{
 				$this->connection = new PDO(DB_HOST, DB_USER, DB_PASS);
 				$this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 				return $this->connection;
 			}
-			// On lève une erreur si la connexion échoue
-			catch(Exception $errorConnection){
+			// An error is raised if the connection doesn't go through
+			catch(\Exception $errorConnection){
 				die('Erreur de connexion : ' . $errorConnection->getMessage());
 			}
 		}
 
+        /**
+         * @param $sql
+         * @param null $parameters
+         * @return bool|\PDOStatement
+         */
 		protected function sql($sql, $parameters = null){
 		    if($parameters){
 				$result = $this->checkConnection()->prepare($sql);
