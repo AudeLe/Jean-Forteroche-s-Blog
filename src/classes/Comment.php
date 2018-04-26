@@ -10,6 +10,15 @@
         private $comment;
         private $comment_date;
         private $reported;
+        private $article;
+
+        public function getArticle(){
+            return $this-> article;
+        }
+
+        public function setArticle($article){
+            $this->article = $article;
+        }
 
         public function getId(){
             return $this-> id;
