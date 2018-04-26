@@ -2,16 +2,8 @@
 
     namespace Blog\config;
 
-
-
-    //require('../src/controller/FrontController.php');
-    //require('../src/controller/BackController.php');
-
     use Blog\src\controller\FrontController;
     use Blog\src\controller\BackController;
-
-    //use Openclassrooms\Blog\Model\FrontController;
-    //use Openclassrooms\Blog\Model\BackController;
 
     class Router {
 
@@ -24,23 +16,20 @@
             $this->backController = new BackController();
         }
 
-        /*public function __construct(){
-            $this->backController = new \BackController();
-        }*/
-
         public function requestRouter(){
 
             try{
                 if(isset($_GET['action'])){
                     if($_GET['action'] == 'listPosts'){
                         $this->frontController->listPosts();
+                        //$this->frontController->paginationChapters();
                     }
 
-                    elseif($_GET['action'] == 'post'){
-                        if(isset($_GET['id']) && $_GET['id'] > 0){
+                    elseif($_GET['action'] == 'post') {
+                        if (isset($_GET['id']) && $_GET['id'] > 0) {
                             $this->frontController->post($_GET['id']);
                         } else {
-                            throw new Exception('Aucun identifiant de billet envoyé');
+                            throw new \Exception('Aucun identifiant de billet envoyé');
                         }
                     }
 
@@ -52,7 +41,7 @@
                         if(isset($_GET['login'])){
                             $this->frontController->getMemberComments($_GET['login']);
                         } else {
-                            throw new Exception('Veuillez vous connecter afin d\'accéder à vos commentaires.');
+                            throw new \Exception('Veuillez vous connecter afin d\'accéder à vos commentaires.');
                         }
                     }
 
@@ -61,7 +50,7 @@
                         if(!empty($_POST['title']) && !empty($_POST['article'])){
                             $this->frontController->addPost($_POST['title'], $_POST['article']);
                         } else {
-                            throw new Exception('Tous les champs ne sont pas remplis afin de valider l\'article');
+                            throw new \Exception('Tous les champs ne sont pas remplis afin de valider l\'article');
                         }
                     }
 
@@ -70,10 +59,10 @@
                             if(!empty($_POST['author']) && !empty($_POST['comment'])){
                                 $this->frontController->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
                             } else {
-                                throw new Exception('Tous les champs ne sont pas remplis !');
+                                throw new \Exception('Tous les champs ne sont pas remplis !');
                             }
                         } else {
-                            throw new Exception('Aucun identifiant de billet envoyé.');
+                            throw new \Exception('Aucun identifiant de billet envoyé.');
                         }
                     }
 
@@ -81,7 +70,7 @@
                         if(isset($_GET['id']) && $_GET['id'] > 0){
                             $this->frontController->editComment($_GET['id']);
                         } else {
-                            throw new Exception('Impossible de récupérer le commentaire.');
+                            throw new \Exception('Impossible de récupérer le commentaire.');
                         }
                     }
 
@@ -89,7 +78,7 @@
                         if(isset($_GET['id']) && $_GET['id'] > 0){
                             $this->frontController->editedComment($_GET['id'], $_POST['newComment']);
                         } else {
-                            throw new Exception('Aucune modification effectuée sur le commentaire');
+                            throw new \Exception('Aucune modification effectuée sur le commentaire');
                         }
                     }
 
@@ -97,7 +86,7 @@
                         if(isset($_GET['id']) && $_GET['id'] > 0){
                             $this->frontController->deleteComment($_GET['id']);
                         } else {
-                            throw new Exception('Impossible de supprimer ce commentaire.');
+                            throw new \Exception('Impossible de supprimer ce commentaire.');
                         }
                     }
 
@@ -105,7 +94,7 @@
                         if(isset($_GET['id']) && $_GET['id'] > 0 && ($_GET['postId'] && $_GET['postId'] > 0)){
                             $this->frontController->reportComment($_GET['id'], $_GET['postId']);
                         } else{
-                            throw new Exception('Impossible de signaler ce commentaire.');
+                            throw new \Exception('Impossible de signaler ce commentaire.');
                         }
                     }
 
@@ -113,7 +102,7 @@
                         if(isset($_GET['id']) && $_GET['id'] > 0){
                             $this->frontController->editPost($_GET['id']);
                         } else{
-                            throw new Exception('Impossible de récupérer le post.');
+                            throw new \Exception('Impossible de récupérer le post.');
                         }
                     }
 
@@ -121,7 +110,7 @@
                         if(isset($_GET['id']) && $_GET['id'] > 0){
                             $this->frontController->editedPost($_GET['id'], $_POST['newTitle'], $_POST['newPost']);
                         } else {
-                            throw new Exception('Aucune modification effectuée sur le post.');
+                            throw new \Exception('Aucune modification effectuée sur le post.');
                         }
                     }
 
@@ -129,7 +118,7 @@
                         if(isset($_GET['id']) && $_GET['id'] > 0){
                             $this->frontController->deletePost($_GET['id']);
                         } else {
-                            throw new Exception('Impossible de supprimer ce post.');
+                            throw new \Exception('Impossible de supprimer ce post.');
                         }
                     }
 
@@ -138,7 +127,7 @@
                         if(!empty($_POST['login']) && !empty($_POST['passwordVisitor']) && !empty($_POST['passwordVisitorCheck'])){
                             $this->backController->registration($_POST['login'], $_POST['passwordVisitor'], $_POST['passwordVisitorCheck']);
                         } else {
-                            throw new Exception('Impossible d\'enregistrer les informations de la personne.');
+                            throw new \Exception('Impossible d\'enregistrer les informations de la personne.');
                         }
                     }
 
@@ -147,13 +136,9 @@
                         if(!empty($_POST['login']) && !empty($_POST['passwordVisitor'])){
                             $this->backController->connection($_POST['login'], $_POST['passwordVisitor']);
                         } else {
-                            throw new Exception('Impossible de vous identifier.');
+                            throw new \Exception('Impossible de vous identifier.');
                         }
                     }
-
-                    /*elseif($_GET['action'] == 'getLogin'){
-                        $this->backController->getLogin();
-                    }*/
 
                     elseif($_GET['action'] == 'logOut'){
                         $this->backController->logOut();
@@ -163,7 +148,7 @@
                         if(!empty($_POST['checkLogin']) && !empty($_POST['checkPassword'])){
                             $this->backController->checkInformations($_POST['checkLogin'], $_POST['checkPassword']);
                         } else {
-                            throw new Exception('Impossible de vous identifier afin de changer vos informations.');
+                            throw new \Exception('Impossible de vous identifier afin de changer vos informations.');
                         }
                     }
 
@@ -171,7 +156,7 @@
                         if(!empty($_POST['idVisitor']) && !empty($_POST['editPassword']) && !empty($_POST['editPasswordCheck'])){
                             $this->backController->editPassword($_POST['idVisitor'], $_POST['editPassword'], $_POST['editPasswordCheck']);
                         } else {
-                            throw new Exception('Vous n\'avez pas entré les bonnes informations.');
+                            throw new \Exception('Vous n\'avez pas entré les bonnes informations.');
                         }
                     }
 
@@ -179,14 +164,14 @@
                         if(!empty($_POST['idVisitor']) && !empty($_POST['editLogin'])){
                             $this->backController->editLogin($_POST['idVisitor'], $_POST['editLogin']);
                         } else {
-                            throw new Exception('Le pseudo que vous souhaitez utiliser est déjà pris.');
+                            throw new \Exception('Le pseudo que vous souhaitez utiliser est déjà pris.');
                         }
                     }
 
                 } else {
                     $this->frontController->listPosts();
                 }
-            } catch(Exception $e){
+            } catch(\Exception $e){
                 echo 'Erreur : ' . $e->getMessage();
             }
 
