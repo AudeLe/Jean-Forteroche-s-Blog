@@ -7,10 +7,17 @@
         private $file;
         private $title;
 
+        /**
+         * View constructor.
+         * @param $action
+         */
         public function __construct($action){
             $this->file = '../template/'.$action.'.php';
         }
 
+        /**
+         * @param $data
+         */
         public function render($data){
             $content = $this->renderFile($this->file, $data);
             $view = $this->renderFile('../template/template.php', [
@@ -20,6 +27,11 @@
             echo $view;
         }
 
+        /**
+         * @param $file
+         * @param $data
+         * @return string
+         */
         private function renderFile($file, $data){
             if(file_exists($file)){
                 extract($data);
@@ -30,5 +42,4 @@
                 echo 'Fichier inexistant';
             }
         }
-
     }
