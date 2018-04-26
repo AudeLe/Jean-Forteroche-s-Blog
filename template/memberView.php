@@ -61,5 +61,36 @@
                     <input type="submit" value="Confirmer mes identifiants" />
                 </div>
             </form>
+
+            <!-- BUtton trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target =#deletionAccount>Supprimer mon compte</button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="deletionAccount" tabindex="-1" role="dialog" aria-labelledby="deletionAccountLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deletionAccountLabel">Suppression de compte</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <p>Êtes-vous sûr(e) de vouloir supprimer votre compte ?</p>
+                            <p>Cette action est irréversible.</p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <a href="../public/index.php?action=deletionAccount&id=<?= $_SESSION['id'] ?>">Supprimer mon compte</a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </div>
