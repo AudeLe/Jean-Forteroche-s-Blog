@@ -37,7 +37,7 @@
 <div id="comments">
     <h4>Commentaires</h4>
     <?php
-    foreach($comments as $comment){
+    foreach($comments as $comment):
         ?>
         <h5><?= $comment->getAuthor(); ?></h5>
         <p><?= $comment->getId(); ?></p>
@@ -73,21 +73,18 @@
             </div>
         </div>
 
-    <?php
-    }
-    ?>
+    <?php endforeach;?>
 </div>
 
 
 <?php
 
-    foreach($posts as $post){
+    foreach($posts as $post):
         ?>
         <div class="news">
         <?php
         if( $postIdActivated == $post->getId()){
             ?>
-
                 <h3><?= $post->getTitle(); ?></h3>
 
             <?php
@@ -98,6 +95,6 @@
         }
         ?>
         </div>
-    <?php
-    }
-?>
+    <?php endforeach; ?>
+
+
