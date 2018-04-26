@@ -82,7 +82,7 @@
                     ?>
                     <tr>
 
-                        <td><?= $comment->getPostId(); ?></td>
+                        <td><?= $comment->getPostId()->getTitle(); ?></td>
                         <td><?= $comment->getAuthor(); ?></td>
                         <td><?= $comment->getComment(); ?></td>
                         <td><?= $comment->getCommentDate(); ?></td>
