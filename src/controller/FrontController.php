@@ -6,11 +6,6 @@
     use Blog\src\DAO\PostDAO;
     use Blog\src\DAO\CommentDAO;
 
-
-    //require_once('../src/DAO/PostDAO.php');
-	//require_once('../src/DAO/CommentDAO.php');
-	//require_once('../src/DAO/ConnectionDAO.php');
-
 	class FrontController{
 
 	    public function __construct(){
@@ -19,19 +14,29 @@
         }
 
         public function listPosts(){
-
+            //$pages = $this->postManager->paginationChapters();
             $posts = $this->postManager-> getPosts();
 
             $view = new View('listPostsView');
             $view->render([
                 'posts' => $posts
+                //'pages' => $pages
             ]);
 
         }
 
+        /*public function pagination($nbPage){
+            $pages = $this->postManager->pagination($nbPage);
+
+	        $view = new View('listPostsView');
+	        $view ->render([
+	            'pages' => $pages
+            ]);
+        }*/
+
         public function post($postId){
 
-	        $posts = $this->postManager->getPosts();
+	        $posts = $this->postManager->getPostsInsert();
             $post = $this->postManager->getPost($postId);
             $comments = $this->commentManager->getComments($postId);
 
