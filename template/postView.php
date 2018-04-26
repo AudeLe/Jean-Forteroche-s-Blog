@@ -37,7 +37,7 @@
 <div id="comments">
     <h4>Commentaires</h4>
     <?php
-    foreach($comments as $comment):
+    foreach($comments[0] as $comment):
         ?>
         <h5><?= $comment->getAuthor(); ?></h5>
         <p><?= $comment->getId(); ?></p>
@@ -97,4 +97,6 @@
         </div>
     <?php endforeach; ?>
 
-
+<?php foreach($comments[1] as $page): ?>
+    <span><?= $page ?></span>
+<?php endforeach; ?>
