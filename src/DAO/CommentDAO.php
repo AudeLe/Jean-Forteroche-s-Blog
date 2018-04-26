@@ -3,42 +3,19 @@
     namespace Blog\src\DAO;
 
     use Blog\src\classes\Comment;
+    use Blog\src\classes\Post;
 
     class CommentDAO extends DAO{
 
         public function getComments($postId){
 
-            $sql = 'SELECT COUNT(id) as nbComments FROM comments WHERE post_id = ?';
-            $result = $this->sql($sql, [$postId]);
-            $countCommentsData = $result -> fetch();
-
-
-            $nbComments = $countCommentsData['nbComments'];
-            $perPage = 5;
-            $nbPage = ceil($nbComments/$perPage);
-
-            if(isset($_GET['p']) && $_GET['p'] > 0 && $_GET['p'] <= $nbPage){
-                $cPage = $_GET['p'];
-            } else {
-                $cPage= 1;
-            }
-
-            $sql = 'SELECT id, post_id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date DESC LIMIT '.(($cPage-1)*$perPage).','.$perPage.'';
+            $sql = 'SELECT id, post_id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date DESC';
             $result = $this->sql($sql, [$postId]);
             $comments = [];
 
-            foreach ($result as $row){
+            foreach ($result as $row) {
                 $commentId = $row['id'];
                 $comments[$commentId] = $this->buildObject($row);
-            }
-
-
-            for($i = 1; $i <= $nbPage; $i++){
-                if($i == $cPage){
-                    echo "$i /";
-                } else {
-                    echo "<a href =\"../public/index.php?action=post&id=$postId&p=$i\">$i</a>";
-                }
             }
 
             return $comments;
@@ -93,13 +70,17 @@
 
         public function getMemberComments($login){
 
-            $sql = 'SELECT id, post_id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE author = ? ORDER BY comment_date DESC LIMIT 0, 5';
+            $sql = 'SELECT posts.id, posts.title, comments.id, comments.post_id, comments.author, comments.comment, DATE_FORMAT(comments.comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr 
+                    FROM comments 
+                    INNER JOIN posts
+                    ON comments.post_id = posts.id
+                    WHERE author = ? ORDER BY comment_date DESC LIMIT 0, 5';
             $result = $this->sql($sql, [$login]);
             $comments = [];
 
             foreach($result as $row){
                 $commentId = $row['id'];
-                $comments[$commentId] = $this->buildObject($row);
+                $comments[$commentId] = $this->buildObjectJoin($row);
             }
 
             return $comments;
@@ -110,6 +91,18 @@
             $comment = new Comment();
             $comment->setId($row['id']);
             $comment->setPostId($row['post_id']);
+            $comment->setAuthor(($row['author']));
+            $comment->setComment($row['comment']);
+            $comment->setCommentDate($row['comment_date_fr']);
+            return $comment;
+        }
+
+        private function buildObjectJoin(array $row){
+            $post = new Post();
+            $post->setTitle($row['title']);
+            $comment = new Comment();
+            $comment->setId($row['id']);
+            $comment->setPostId($post);
             $comment->setAuthor(($row['author']));
             $comment->setComment($row['comment']);
             $comment->setCommentDate($row['comment_date_fr']);
