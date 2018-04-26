@@ -16,7 +16,7 @@
     <p>Derniers chapitres :</p>
 	<?php
 
-        foreach($posts as $post){
+        foreach($posts[0] as $post):
             ?>
             <div class="news">
                 <h3><a href="../public/index.php?action=post&id=<?= $post->getId(); ?>"><?= $post->getTitle(); ?></a></h3>
@@ -24,8 +24,11 @@
                 <p><?= $post->getContent(); ?></p>
 
             </div>
-            <br>
+            <br />
 
-        <?php
-        }
-        ?>
+        <?php endforeach; ?>
+
+        <?php foreach($posts[1] as $page): ?>
+         <span><?= $page ?></span>
+
+        <?php endforeach;?>
