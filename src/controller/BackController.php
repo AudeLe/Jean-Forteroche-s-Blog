@@ -69,4 +69,9 @@
 
         }
 
+        public function deletionAccount($id){
+            $this->connectionManager->logOut();
+            $this->connectionManager->deletionAccount($id);
+        }
+
     }
