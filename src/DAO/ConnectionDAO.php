@@ -206,7 +206,7 @@
             $sql = 'SELECT posts.id, posts.title, comments.id, comments.post_id, comments.author, comments.comment, DATE_FORMAT(comments.comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr 
                     FROM comments, posts 
                     WHERE reported = 1 
-                    ORDER BY comment_date DESC LIMIT 0,5';
+                    ORDER BY comment_date DESC';
             $result = $this->sql($sql);
 
             $comments = [];
