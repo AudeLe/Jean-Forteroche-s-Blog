@@ -96,8 +96,8 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
         <!-- TinyMCE -->
-        <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-        <script>tinymce.init({ selector:'textarea',
+            <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=47ep4zzfi51ytdurn5a7ju3fuix1v553r78z5vw16yh9wgsl"></script>
+            <script>tinymce.init({ selector:'textarea',
             auto_focus: 'article'
             });</script>
 
