@@ -73,7 +73,7 @@
         <div class="container-fluid">
             <section class="row">
                 <div id="banner">
-                    <img class="img-responsive" src="../public/images/Mt._Hayes_and_the_eastern_Alaska_Range_mountains.jpg" alt="Mount Hayes and the eastern Alaska Range mountains"/>
+                    <img class="img-responsive" src="../public/assets/images/Mt._Hayes_and_the_eastern_Alaska_Range_mountains.jpg" alt="Mount Hayes and the eastern Alaska Range mountains"/>
 
                     <div id="bannerDescription">
                         <h1>Billet simple pour l'Alaska</h1>
@@ -98,7 +98,9 @@
 
         <!-- TinyMCE -->
         <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-        <script>tinymce.init({ selector:'textarea' });</script>
+        <script>tinymce.init({ selector:'textarea',
+            auto_focus: 'article'
+            });</script>
 
 	</body>
 </html>
