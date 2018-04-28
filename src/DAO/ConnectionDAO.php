@@ -107,10 +107,14 @@
             if($row){
                 $confirmPassword = password_verify($checkPassword, $row['password']);
 
-                if($confirmPassword == true){
-                    echo 'Vous avez entré les bons identifiants.';
-                } else {
+                if($confirmPassword == false){
                     echo 'Mauvais identifiant ou mot de passe';
+                    if($_SESSION['status'] == 'admin'){
+                        header('Location: ../public/index.php?action=getChaptersAndReportedComments');
+                    } else {
+                        header('Location: ../public/index.php?action=getMemberComments&login='.$checkLogin.'');
+                    }
+
                 }
             }
 
@@ -122,23 +126,22 @@
          * @param $editPasswordCheck
          */
         // Allows the member/admin to change his/her password
-        public function editPassword($idVisitor, $editPassword, $editPasswordCheck){
+        public function editPassword($editPassword, $editPasswordCheck){
 
             if($editPassword == $editPasswordCheck){
                 $editPasswordHashed = password_hash($editPassword, PASSWORD_DEFAULT);
 
                 $sql = 'UPDATE members SET password = :password WHERE id = :id';
                 $this->sql($sql, [
-                    'id' => $idVisitor,
+                    'id' => $_SESSION['id'],
                     'password' => $editPasswordHashed
                 ]);
 
-                echo 'Mot de passe modifié.';
                 header('Location: ../public/index.php');
+
             } else {
                 echo 'Votre mot de passe n\'a pas pu être modifié.';
             }
-
         }
 
         /**
@@ -146,7 +149,7 @@
          * @param $editLogin
          */
         // Allows the member/admin to change his/her login
-        public function editLogin($idVisitor, $editLogin){
+        public function editLogin($editLogin){
 
             $sql = 'SELECT login FROM members WHERE login = :login';
             $result = $this->sql($sql, [
@@ -159,23 +162,47 @@
                 $sql = 'UPDATE members SET login = :login WHERE id = :id';
                 $result = $this->sql($sql, [
                     'login' => $editLogin,
-                    'id' => $idVisitor
+                    'id' => $_SESSION['id']
                 ]);
 
-                echo 'Login modifié';
             }
+
+            header('Location: ../public/index.php');
+        }
+
+        public function editLoginComments($editLogin){
+            $sql = 'UPDATE comments SET author = :editlogin WHERE member_id = :memberId ';
+            $result = $this->sql($sql, [
+                'memberId' => $_SESSION['id'],
+                'editlogin' => $editLogin
+            ]);
         }
 
         /**
          * @param $id
          */
         // Allows the member to delete his/her account. This action isn't available for the admin
-        public function deletionAccount($id){
+        public function deletionAccount($id, $checkLogin, $checkPassword){
 
-            $sql = 'DELETE FROM members WHERE id = ?';
-            $this->sql($sql, [$id]);
+            $sql = 'SELECT id, password FROM members WHERE login = :login';
+            $result = $this->sql($sql, [
+                'login' => $checkLogin
+            ]);
+            $row = $result->fetch();
+            if($row){
+                $confirmPassword = password_verify($checkPassword, $row['password']);
 
-            header('Location: ../public/index.php');
+                if($confirmPassword == false){
+                    echo 'Mauvais identifiant ou mot de passe';
+                        header('Location: ../public/index.php?action=getMemberComments&login='.$checkLogin.'');
+                } else {
+                    $this->logOut();
+                    $sql = 'DELETE FROM members WHERE id = ?';
+                    $this->sql($sql, [$id]);
+
+                    header('Location: ../public/index.php');
+                }
+            }
         }
 
                     /* ----- ADMIN PAGE ----- */
@@ -204,18 +231,45 @@
         public function getReportedComments(){
 
             $sql = 'SELECT posts.id, posts.title, comments.id, comments.post_id, comments.author, comments.comment, DATE_FORMAT(comments.comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr 
-                    FROM comments, posts 
+                    FROM comments
+                    INNER JOIN posts
+                    ON comments.post_id  = posts.id
                     WHERE reported = 1 
                     ORDER BY comment_date DESC';
             $result = $this->sql($sql);
 
+            $reportedComments = [];
+            foreach($result as $row){
+                $commentId = $row['id'];
+                $reportedComments[$commentId] = $this->buildObjectJoin($row);
+            }
+            return $reportedComments;
+
+        }
+
+        /**
+         * @param $login
+         * @return array
+         */
+        // When a member is connected, return all the member's comment
+        public function getMemberComments(){
+
+            $sql = 'SELECT posts.id, posts.title, comments.id, comments.post_id, comments.author, comments.comment, DATE_FORMAT(comments.comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr 
+                    FROM comments 
+                    INNER JOIN posts
+                    ON comments.post_id = posts.id
+                    WHERE author = :author ORDER BY comment_date DESC';
+            $result = $this->sql($sql, [
+                'author' => $_SESSION['login']
+            ]);
             $comments = [];
+
             foreach($result as $row){
                 $commentId = $row['id'];
                 $comments[$commentId] = $this->buildObjectJoin($row);
             }
-            return $comments;
 
+            return $comments;
         }
 
         /**
