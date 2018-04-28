@@ -104,10 +104,10 @@
 
                     // Add a comment
                     elseif($_GET['action'] == 'addComment'){
-                        if(isset($_GET['id']) && $_GET['id'] > 0){
-                            // Veirfy if the inputs are not empty
+                        if(isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['memberId']) && $_GET['memberId'] > 0){
+                            // Verify if the inputs are not empty
                             if(!empty($_POST['author']) && !empty($_POST['comment'])){
-                                $this->frontController->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+                                $this->frontController->addComment($_GET['id'], $_GET['memberId'], $_POST['author'], $_POST['comment']);
                             } else {
                                 throw new \Exception('Tous les champs ne sont pas remplis !');
                             }
@@ -156,6 +156,15 @@
                         }
                     }
 
+                    // Ignore a reported comment
+                    elseif($_GET['action'] == 'ignoreReportedComment'){
+                        if(isset($_GET['id']) && $_GET['id'] > 0){
+                            $this->frontController->ignoreReportedComment($_GET['id']);
+                        } else {
+                            throw new \Exception('Impossible d\'ignorer le commentaire signalé.');
+                        }
+                    }
+
 
                                 /* ----- CONNECTION RELATED ----- */
 
@@ -193,8 +202,8 @@
 
                     // Change the password
                     elseif($_GET['action'] == 'editPassword'){
-                        if(!empty($_POST['idVisitor']) && !empty($_POST['editPassword']) && !empty($_POST['editPasswordCheck'])){
-                            $this->backController->editPassword($_POST['idVisitor'], $_POST['editPassword'], $_POST['editPasswordCheck']);
+                        if(!empty($_POST['editPassword']) && !empty($_POST['editPasswordCheck'])){
+                            $this->backController->editPassword($_POST['editPassword'], $_POST['editPasswordCheck']);
                         } else {
                             throw new \Exception('Vous n\'avez pas entré les bonnes informations.');
                         }
@@ -202,17 +211,18 @@
 
                     // CHange the login
                     elseif($_GET['action'] == 'editLogin'){
-                        if(!empty($_POST['idVisitor']) && !empty($_POST['editLogin'])){
-                            $this->backController->editLogin($_POST['idVisitor'], $_POST['editLogin']);
+                        if(!empty($_POST['editLogin'])){
+                            $this->backController->editLogin($_POST['editLogin']);
                         } else {
-                            throw new \Exception('Le pseudo que vous souhaitez utiliser est déjà pris.');
+                            throw new \Exception('Impossible de modifier votre pseudonyme.');
                         }
+
                     }
 
                     // Deletion of the account
                     elseif($_GET['action'] == 'deletionAccount'){
-                        if(isset($_GET['id']) && $_GET['id'] > 0){
-                            $this->backController->deletionAccount($_GET['id']);
+                        if(isset($_GET['id']) && $_GET['id'] > 0 && !empty($_POST['checkLogin']) && !empty($_POST['checkPassword'])){
+                            $this->backController->deletionAccount($_GET['id'], $_POST['checkLogin'], $_POST['checkPassword']);
                         } else {
                             throw new \Exception('Impossible de supprimer ce compte.');
                         }
