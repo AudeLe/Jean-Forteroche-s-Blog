@@ -20,12 +20,13 @@
         // Recover all the chapters and all the reported comments to display them on the admin page
         public function getChaptersAndReportedComments(){
             $posts = $this->connectionManager->getChapters();
-            $comments = $this->connectionManager->getReportedComments();
-
+            $reportedComments = $this->connectionManager->getReportedComments();
+            $comments = $this->connectionManager->getMemberComments();
 
             $view = new View('adminView');
             $view->render([
                 'posts' => $posts,
+                'reportedComments' => $reportedComments,
                 'comments' => $comments
             ]);
 
@@ -77,28 +78,31 @@
 
             $visitorInformations = $this->connectionManager->checkInformations($checkLogin, $checkPassword);
 
-            require('../template/editInformations.php');
+            $view = new View('editInformations');
+            $view->render([]);
         }
 
         /**
-         * @param $idVisitor
          * @param $editPassword
          * @param $editPasswordCheck
          */
         // Change the person's password
-        public function editPassword($idVisitor, $editPassword, $editPasswordCheck){
+        public function editPassword($editPassword, $editPasswordCheck){
 
-            $this->connectionManager->editPassword($idVisitor, $editPassword, $editPasswordCheck);
+            $this->connectionManager->editPassword($editPassword, $editPasswordCheck);
+            $this->connectionManager->logOut();
+
         }
 
         /**
-         * @param $idVisitor
          * @param $editLogin
          */
         // Change the person's login
-        public function editLogin($idVisitor, $editLogin){
+        public function editLogin($editLogin){
 
-            $this->connectionManager->editLogin($idVisitor, $editLogin);
+            $this->connectionManager->editLoginComments($editLogin);
+            $this->connectionManager->editLogin($editLogin);
+            $this->connectionManager->logOut();
 
         }
 
@@ -106,9 +110,9 @@
          * @param $id
          */
         // Allow the person's to delete their account
-        public function deletionAccount($id){
-            $this->connectionManager->logOut();
-            $this->connectionManager->deletionAccount($id);
+        public function deletionAccount($id, $checkLogin, $checkPassword){
+            //$this->connectionManager->logOut();
+            $this->connectionManager->deletionAccount($id, $checkLogin, $checkPassword);
         }
 
     }
