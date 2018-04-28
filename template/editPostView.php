@@ -11,7 +11,7 @@
                 </div>
                 <div>
                     <label for="newPost">Post</label><br />
-                    <textarea id="newPost" name="newPost"><?= $post->getContent(); ?></textarea>
+                    <textarea id="newPost" name="newPost" id="article"><?= $post->getContent(); ?></textarea>
                 </div>
                 <div>
                     <input type="submit" value="Editer le post" class="submitButton" />
