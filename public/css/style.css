@@ -1,58 +1,148 @@
 body{
-	width: 100%;
+    text-align: justify;
 }
 
 img{
 	width: 100%;
+    margin-bottom: 5%;
 }
 
-h1, h3{
-	text-align: center;
+h2, h3, h4{
+    text-align: center;
+    margin-bottom: 4%;
 }
 
-h3{
-	background-color: black;
-	color: white;
-	font-size: 0.9em;
-	margin-bottom: 0;
+p{
+    margin: 1em 0;
 }
 
+/* ----- HEADER NAV BAR ----- */
+li.nav-item button{
+    margin : 0 5px;
+}
+
+header i{
+    margin-right: 5px;
+}
+
+/* ----- BANNER TEMPLATE ----- */
 #banner img{
-	position: relative;
+    position: relative;
 }
 
 #bannerDescription{
-	position: absolute;
-	top: 50%;
-	/*margin: 0 auto;*/
-	width: 100%;
-	color: white;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    color: white;
+    text-align: center;
 }
 
-#bannerDescription h2{
-	/*padding: 0 auto;*/
-	text-align: center;
+/* ----- PAGINATION ----- */
+.pages{
+    margin: 3% 0;
+    text-align: center;
 }
 
-.news p{
-	background-color: #CCCCCC;
-	margin-top: 0;
+
+/* ----- FORM ----- */
+
+.submitButton{
+    border-radius: 5px;
+    margin-top: 10px;
 }
 
-.news{
-	width: 70%;
-	margin: auto;
+/* ----- LIST POSTS VIEW ----- */
+#authorPresentation{
+    padding-top: 100px;
 }
 
-a{
-	text-decoration: none;
-	color: blue;
+.datePosts{
+    text-align: center;
 }
 
-/*#registrationForm{
-	display: none;
+.postContent{
+    /*max-height: 100px;*/
+    /*white-space: nowrap;*/
+    overflow: hidden;
+    position: relative;
+    line-height: 1.5em;
+    max-height: 4.5em;
+    /*text-overflow: ellipsis-lastline;*/
+
 }
 
-#connectionForm{
-	display: none;
-}*/
+.ellipsis{
+    background: #fff;
+    bottom: 0;
+    position: absolute;
+    right: 0;
+}
+
+.fill{
+    background: #fff;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+/* ----- POST VIEW ----- */
+.post{
+    margin: 5% 0;
+}
+
+.date{
+    font-size: 0.85em;
+}
+
+#listPostsInsert{
+    margin: auto 0;
+}
+
+.reportButton{
+    margin: auto 0;
+}
+
+.comment{
+    border-bottom: 1px solid #D3D3D3;
+    margin: 1%;
+}
+
+/* ----- ADMIN PAGE ----- */
+
+#addChapter{
+    margin-bottom: 5%;
+}
+
+.listPostsAdmin{
+    border-bottom: 1px solid #D3D3D3;
+}
+
+.postsAdmin{
+    padding-right: 10px;
+}
+
+.iconPostsAdmin{
+    margin: 0 auto;
+}
+
+/* ----- MEMBER PAGE ----- */
+.listCommentsMember{
+    border-bottom: 1px solid #D3D3D3;
+}
+
+.commentsMember{
+    padding-right: 10px;
+}
+
+.changeCredentials{
+    text-align: center;
+}
+
+#deletionAccount{
+    text-align: center;
+}
+
+#textChangeCredentials{
+    text-align: center;
+}
