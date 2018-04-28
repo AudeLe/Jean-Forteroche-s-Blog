@@ -4,7 +4,7 @@
 
 <em class="date">Créé le <?= $post->getCreationDate(); ?></em>
 <div class="row" id="postAndCommentAdding">
-    <div class="col-md-10">
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
         <div class="post">
             <?php $postIdActivated = $post->getId(); ?>
 
@@ -15,7 +15,7 @@
 
         ?>
 
-        <div class="col-md-12 formComment">
+        <div class="col-lg-12 col-md-12 col-ms-12 col-xs-12 formComment">
             <form action="../public/index.php?action=addComment&id=<?= $post->getId(); ?>&memberId=<?php
             if(!isset($_SESSION['id'])){
                 ?>
@@ -53,7 +53,7 @@
 
     </div>
 
-    <div class="col-md-2" id="listPostsInsert">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
         <?php
         foreach($posts as $post):
         ?>
@@ -76,18 +76,18 @@
 
 
 <h4>Commentaires</h4>
-<!--<div class="container-fluid row" id="comments">-->
+<div class="container-fluid">
     <?php
     foreach($comments[0] as $comment):
         ?>
         <div class="row comment">
-            <div class="col-md-11">
+            <div class="col-lg- 11 col-md-11 col-sm-12 col-xs-12">
                 <h5><?= $comment->getAuthor(); ?></h5>
                 <p><?= $comment->getComment(); ?></p>
                 <p>Posté le <?= $comment->getCommentDate(); ?></p>
             </div>
 
-            <div class=" reportButton col-md-1">
+            <div class=" reportButton col-lg-1 col-md-1 col-sm-12 col-xs-12">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reportComment<?= $comment->getId(); ?>">Signaler</button>
 
@@ -119,7 +119,7 @@
             </div>
         </div>
     <?php endforeach;?>
-<!--</div>-->
+</div>
 
 <div class="pages">
     <?php foreach($comments[1] as $page): ?>
