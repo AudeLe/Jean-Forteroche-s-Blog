@@ -1,55 +1,57 @@
+<!-- Header with a nav bar displayed if the visitor is connected -->
+<ul class="navbar-nav mr-auto">
+    <!-- Log out button -->
+    <li class="nav-item">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#logOut">
+            <i class="fas fa-sign-out-alt"></i>Déconnexion
+        </button>
 
-    <ul class="nav justify-content-end">
-        <li class="nav-item">
-            <?php
-                if($_SESSION['status'] == 'admin'){
-                    ?>
-                    <a href="../public/index.php?action=getChaptersAndReportedComments"><?= $_SESSION['login'] ?></a>
-                <?php
-                } else {
-                    ?>
-                    <a href="?action=getMemberComments&login=<?= $_SESSION['login'] ?>"><?= $_SESSION['login'] ?></a>
-                <?php
-                }
+        <!-- Modal -->
+        <div class="modal fade" id="logOut" tabindex="-1" role="dialog" aria-labelledby="logOutLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
 
-            ?>
-        </li>
-
-        <li class="nav-item">
-            <a href="../public/index.php">Accueil du site</a>
-        </li>
-
-        <li>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#logOut">
-                Déconnexion
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="logOut" tabindex="-1" role="dialog" aria-labelledby="logOutLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="logOutLabel">
-                                Déconnexion
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-
-                        <div class="modal-body">
-                            <p>Êtes-vous sûr(e) de vouloir vous déconnecter ?</p>
-                        </div>
-
-                        <div class="modal-footer">
-                            <a href="../public/index.php?action=logOut">Déconnexion</a>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        </div>
-
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logOutLabel">
+                            Déconnexion
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
+
+                    <div class="modal-body">
+                        <p>Êtes-vous sûr(e) de vouloir vous déconnecter ?</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <a href="../public/index.php?action=logOut">Déconnexion</a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    </div>
+
                 </div>
             </div>
-        </li>
-    </ul>
+        </div>
+    </li>
+
+    <!-- Link to the admin/member personal page -->
+    <li class="nav-item">
+        <?php
+        if($_SESSION['status'] == 'admin'){
+            ?>
+            <a class="nav-link" href="../public/index.php?action=getChaptersAndReportedComments"><i class="fas fa-user-circle"></i><?= $_SESSION['login'] ?></a>
+            <?php
+        } else {
+            ?>
+            <a class="nav-link" href="../public/index.php?action=getMemberComments&login=<?= $_SESSION['login'] ?>"><i class="fas fa-user-circle"></i><?= $_SESSION['login'] ?></a>
+            <?php
+        }
+        ?>
+    </li>
+
+    <!-- Link to the home page, where all the chapters are displayed -->
+    <li class="nav-item">
+        <a class="nav-link" href="../public/index.php"><i class="fas fa-home"></i>Accueil du site</a>
+    </li>
+</ul>
