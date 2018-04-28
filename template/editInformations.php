@@ -9,7 +9,7 @@
 
 
 <div class="row">
-    <div class="col-md-6 changeCredentials">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 changeCredentials">
         <h4>Changer son pseudonyme</h4>
         <form action="../public/index.php?action=editLogin" method="post">
             <div>
@@ -22,7 +22,7 @@
         </form>
     </div>
 
-    <div class="col-md-6 changeCredentials">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 changeCredentials" id="password">
         <h4>Changer son mot de passe</h4>
         <form action="../public/index.php?action=editPassword" method="post">
             <div>
