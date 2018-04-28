@@ -58,10 +58,10 @@
                         <tr class="listPostsAdmin">
                             <td class="col-md-2 postsAdmin"><?= $post->getTitle(); ?></td>
                             <td class="col-md-6 postsAdmin">
-                                <p class="postContent"><?= $post->getContent(); ?>
-                                <span class="ellipsis">&#133;</span>
-                                <span class="fill"></span>
-                                </p>
+                                <div class="postContent"><?= $post->getContent(); ?>
+                                    <span class="ellipsis">&#133;</span>
+                                    <span class="fill"></span>
+                                </div>
                             </td>
                             <td class="col-md-2 postsAdmin"><?= $post->getCreationDate(); ?></td>
                             <td class="col-md-1 postsAdmin"><a href="../public/index.php?action=editPost&id=<?= $post->getId(); ?>"><i class="fas fa-edit"></i></a></td>
