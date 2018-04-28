@@ -67,7 +67,7 @@ header i{
     overflow: hidden;
     position: relative;
     line-height: 1.5em;
-    max-height: 4.5em;
+    max-height: 8.5em;
     /*text-overflow: ellipsis-lastline;*/
 
 }
