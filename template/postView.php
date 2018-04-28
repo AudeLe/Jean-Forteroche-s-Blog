@@ -11,7 +11,21 @@
             <p><?= $post->getContent(); ?></p>
         </div>
 
-        <form action="../public/index.php?action=addComment&id=<?= $post->getId(); ?>&memberId=<?= $_SESSION['id']; ?>" method="post">
+        <?php
+
+        ?>
+
+        <form action="../public/index.php?action=addComment&id=<?= $post->getId(); ?>&memberId=<?php
+        if(!isset($_SESSION['id'])){
+            ?>
+            0
+        <?php
+        } else {
+            echo $_SESSION['id'];
+        }
+         ?>" method="post">
+
+
             <div>
                 <label for="author">Pseudo</label>
                 <?php
