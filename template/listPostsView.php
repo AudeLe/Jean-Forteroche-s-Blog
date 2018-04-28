@@ -20,10 +20,10 @@
                 <div class="news">
                     <h3><a href="../public/index.php?action=post&id=<?= $post->getId(); ?>"><?= $post->getTitle(); ?></a></h3>
                     <p class="date datePosts">Créé le <em><?= $post->getCreationDate(); ?></em></p>
-                    <p class="postContent"><?= $post->getContent(); ?>
+                    <div class="postContent"><?= $post->getContent(); ?>
                         <span class="ellipsis">&#133;</span>
                         <span class="fill"></span>
-                    </p>
+                    </div>
 
                 </div>
                 <br />
