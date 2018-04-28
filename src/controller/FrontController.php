@@ -113,9 +113,9 @@
          * @param $comment
          */
         // Add a comment
-        public function addComment($postId, $author, $comment){
+        public function addComment($postId, $memberId, $author, $comment){
 
-            $this -> commentManager->postComment($postId, $author, $comment);
+            $this -> commentManager->postComment($postId, $memberId, $author, $comment);
 
             header('Location: ../public/index.php?action=post&id=' . $postId);
         }
@@ -144,7 +144,6 @@
 
             $this->commentManager->editedComment($id, $newComment);
 
-            header('Location: ../public/index.php?action=getMemberComments&login='.$memberLogin.'');
         }
 
         /**
@@ -167,6 +166,15 @@
 
             $this->commentManager->reportComment($id, $postId);
 
+        }
+
+        /**
+         * @param $id
+         */
+        // Ignore a reported comment. Delete it from the moderation part of the admin page
+        public function ignoreReportedComment($id){
+
+            $this->commentManager->ignoreReportedComment($id);
         }
 
                     /* ----- MEMBER PAGE ----- */
