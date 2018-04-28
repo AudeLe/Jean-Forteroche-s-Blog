@@ -3,7 +3,7 @@
 <h2><?= $post->getTitle(); ?></h2>
 
 <em class="date">Créé le <?= $post->getCreationDate(); ?></em>
-<div class="row">
+<div class="row" id="postAndCommentAdding">
     <div class="col-md-10">
         <div class="post">
             <?php $postIdActivated = $post->getId(); ?>
@@ -15,41 +15,42 @@
 
         ?>
 
-        <form action="../public/index.php?action=addComment&id=<?= $post->getId(); ?>&memberId=<?php
-        if(!isset($_SESSION['id'])){
-            ?>
+        <div class="col-md-12 formComment">
+            <form action="../public/index.php?action=addComment&id=<?= $post->getId(); ?>&memberId=<?php
+            if(!isset($_SESSION['id'])){
+                ?>
             0
         <?php
-        } else {
-            echo $_SESSION['id'];
-        }
-         ?>" method="post">
-
-
-            <div>
-                <label for="author">Pseudo</label>
-                <?php
-                if(!isset($_SESSION['id'])){
-                    ?>
-                    <input type="text" id="author" name="author"/>
+            } else {
+                echo $_SESSION['id'];
+            }
+            ?>" method="post">
+                <div>
+                    <label for="author">Pseudo</label><br/>
                     <?php
-                } else {
+                    if(!isset($_SESSION['id'])){
+                        ?>
+                        <input type="text" id="author" name="author"/>
+                        <?php
+                    } else {
+                        ?>
+                        <input type="text" id="author" name="author" value="<?= $_SESSION['login'] ?>" readonly/>
+
+                        <?php
+                    }
+
                     ?>
-                    <input type="text" id="author" name="author" value="<?= $_SESSION['login'] ?>" readonly/>
+                </div>
+                <div>
+                    <label for="comment">Commentaire</label><br/>
+                    <textarea id="comment" name="comment"></textarea>
+                </div>
+                <div>
+                    <input type="submit" class="submitButton"/>
+                </div>
+            </form>
+        </div>
 
-                    <?php
-                }
-
-                ?>
-            </div>
-            <div>
-                <label for="comment">Commentaire</label>
-                <textarea id="comment" name="comment"></textarea>
-            </div>
-            <div>
-                <input type="submit" class="submitButton"/>
-            </div>
-        </form>
     </div>
 
     <div class="col-md-2" id="listPostsInsert">
