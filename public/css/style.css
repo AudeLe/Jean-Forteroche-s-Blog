@@ -11,18 +11,19 @@
 
 }
 
+/* ----- GENEREAL TAGS ----- */
 body{
     text-align: justify;
 }
 
 img{
-	width: 100%;
     margin-bottom: 5%;
+    width: 100%;
 }
 
 h2, h3, h4{
-    text-align: center;
     margin-bottom: 4%;
+    text-align: center;
 }
 
 p{
@@ -44,13 +45,13 @@ header i{
 }
 
 #bannerDescription{
+    color: white;
     font-family: 'journalregular', sans-serif;
     position: absolute;
-    top: 40%;
-    width: 100%;
-    color: white;
     text-align: center;
     text-shadow: 1px 1px 10px #4673B6;
+    top: 40%;
+    width: 100%;
 }
 
 #bannerDescription h1{
@@ -76,8 +77,13 @@ header i{
 }
 
 /* ----- LIST POSTS VIEW ----- */
+#listPostsWelcome{
+    margin-bottom: 8%;
+    text-align:center;
+}
+
 #authorPresentation{
-    padding-top: 100px;
+    font-size: 0.8em;
 }
 
 .datePosts{
@@ -85,14 +91,10 @@ header i{
 }
 
 .postContent{
-    /*max-height: 100px;*/
-    /*white-space: nowrap;*/
-    overflow: hidden;
-    position: relative;
     line-height: 1.5em;
     max-height: 8.5em;
-    /*text-overflow: ellipsis-lastline;*/
-
+    overflow: hidden;
+    position: relative;
 }
 
 .ellipsis{
@@ -116,10 +118,6 @@ header i{
 
 .date{
     font-size: 0.85em;
-}
-
-#listPostsInsert{
-    margin: auto 0;
 }
 
 .reportButton{
@@ -176,4 +174,51 @@ header i{
 
 #textChangeCredentials{
     text-align: center;
+}
+
+
+/* ===== MEDIA QUERIES ===== */
+@media(max-width: 768px){
+
+    #bannerSection{
+        margin-bottom: 7%;
+    }
+
+    #banner{
+        width: 100%;
+    }
+
+    #banner img{
+        display: none;
+        position: static;
+    }
+
+    #bannerDescription{
+        color: #4E81CC;
+        position: static;
+        text-shadow: 1px 1px 10px #57677F;
+    }
+
+    th, td{
+        vertical-align: center;
+    }
+
+    #password.changeCredentials{
+        padding-top: 20px;
+    }
+
+    #deletionAccount{
+        padding-top: 20px;
+    }
+}
+
+@media(max-width: 992px){
+
+    header button.btn.btn-primary{
+        margin-top: 1%;
+    }
+
+    #bannerDescription{
+        top: 22%;
+    }
 }
