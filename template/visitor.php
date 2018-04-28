@@ -34,7 +34,7 @@
                                 <input type="password" id="passwordVisitorCheck" name="passwordVisitorCheck"/>
                             </div>
                             <div>
-                                <input type="submit" value="S'inscrire"/>
+                                <input type="submit" value="S'inscrire"class="submitButton"/>
                             </div>
                         </form>
                     </div>
@@ -77,7 +77,7 @@
                                 <input type="password" id="passwordVisitor" name="passwordVisitor"/>
                             </div>
                             <div>
-                                <input type="submit" value="Se connecter"/>
+                                <input type="submit" value="Se connecter" class="submitButton"/>
                             </div>
                         </form>
                     </div>
