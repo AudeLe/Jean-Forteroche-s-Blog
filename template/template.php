@@ -35,7 +35,8 @@
 
         <!-- Stylesheets -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-		<link rel="stylesheet" href="../public/css/style.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+        <link rel="stylesheet" href="../public/css/style.css" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,29 +48,44 @@
 	</head>
 
 	<body>
-        <header>
-            <?php
-                if(!isset($_SESSION['id'])){
-                    require ('visitor.php');
-                } else {
-                    require ('connected.php');
-                }
-            ?>
+            <header class="page-header">
+                <!-- Loading the necessary nav bar regarding if the visitor is connected or not -->
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-        </header>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                        <?php
+                        if(!isset($_SESSION['id'])){
+                            require ('visitor.php');
+                        } else {
+                            require ('connected.php');
+                        }
+                        ?>
+                    </div>
+                </nav>
+            </header>
 
 
-        <!--<div id="banner">
-            <img src="../public/images/Mt._Hayes_and_the_eastern_Alaska_Range_mountains.jpg" alt="Mount Hayes and the eastern Alaska Range mountains"/>
+        <div class="container-fluid">
+            <section class="row">
+                <div id="banner">
+                    <img class="img-responsive" src="../public/images/Mt._Hayes_and_the_eastern_Alaska_Range_mountains.jpg" alt="Mount Hayes and the eastern Alaska Range mountains"/>
 
-            <div id="bannerDescription">
-                <h1>Billet simple pour l'Alaska</h1>
-                <h2>par Jean Forteroche</h2>
-            </div>
+                    <div id="bannerDescription">
+                        <h1>Billet simple pour l'Alaska</h1>
+                        <h2>par Jean Forteroche</h2>
+                    </div>
 
-        </div>-->
+                </div>
+            </section>
+        </div>
 
-        <div id="content">
+
+        <div class="container-fluid" id="content">
             <?= $content ?>
         </div>
 
@@ -83,11 +99,6 @@
         <!-- TinyMCE -->
         <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
         <script>tinymce.init({ selector:'textarea' });</script>
-        <!--<script src = "js/moderation.js"></script>-->
-        <!--<script src = "js/connection.js"></script>-->
-
-        <!-- Fontawesome -->
-        <script src="https://use.fontawesome.com/b88df9d43b.js"></script>
 
 	</body>
 </html>
