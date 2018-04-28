@@ -50,7 +50,7 @@
 	<body>
             <header class="page-header">
                 <!-- Loading the necessary nav bar regarding if the visitor is connected or not -->
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <nav class="navbar navbar-expand-md navbar-light bg-light">
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -71,15 +71,14 @@
 
 
         <div class="container-fluid">
-            <section class="row">
+            <section class="row" id="bannerSection">
                 <div id="banner">
                     <img class="img-responsive" src="../public/assets/images/Mt._Hayes_and_the_eastern_Alaska_Range_mountains.jpg" alt="Mount Hayes and the eastern Alaska Range mountains"/>
 
-                    <div id="bannerDescription">
+                    <div id="bannerDescription" class="col-xs-12">
                         <h1>Billet simple pour l'Alaska</h1>
                         <h2>par Jean Forteroche</h2>
                     </div>
-
                 </div>
             </section>
         </div>
