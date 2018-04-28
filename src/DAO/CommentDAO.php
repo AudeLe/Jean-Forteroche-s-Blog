@@ -56,10 +56,10 @@
          * @param $comment
          */
         // Allow to add a comment
-        public function postComment($postId, $author, $comment){
+        public function postComment($postId, $memberId, $author, $comment){
 
-            $sql = 'INSERT INTO comments(post_id, author, comment, comment_date) VALUES (?, ?, ?, NOW())';
-            $this->sql($sql, [$postId, $author, $comment]);
+            $sql = 'INSERT INTO comments(post_id, member_id, author, comment, comment_date) VALUES (?, ?, ?, ?, NOW())';
+            $this->sql($sql, [$postId, $memberId, $author, $comment]);
 
         }
 
@@ -96,6 +96,12 @@
                 'newComment' => $newComment
             ]);
 
+            if($_SESSION['status'] == 'admin'){
+                header('Location: ../public/index.php?action=getChaptersAndReportedComments');
+            } else {
+                header('Location: ../public/index.php?action=getMemberComments&login='.$_SESSION['login'].'');
+            }
+
         }
 
         /**
@@ -126,6 +132,20 @@
         }
 
         /**
+         * @param $id
+         * @return bool|\PDOStatement
+         */
+        // Ignore a reported comment. Delete it from the moderation part of the admin page
+        public function ignoreReportedComment($id){
+            $sql = 'UPDATE comments SET reported = 0 WHERE id = ?';
+            $result= $this->sql($sql, [$id]);
+
+            header('Location: ../public/index.php?action=getChaptersAndReportedComments');
+
+            return $result;
+        }
+
+        /**
          * @param $login
          * @return array
          */
@@ -136,7 +156,7 @@
                     FROM comments 
                     INNER JOIN posts
                     ON comments.post_id = posts.id
-                    WHERE author = ? ORDER BY comment_date DESC LIMIT 0, 5';
+                    WHERE author = ? ORDER BY comment_date DESC';
             $result = $this->sql($sql, [$login]);
             $comments = [];
 
@@ -146,7 +166,6 @@
             }
 
             return $comments;
-
         }
 
         /**
