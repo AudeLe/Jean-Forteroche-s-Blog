@@ -1,6 +1,6 @@
 <?php
 
-    namespace Blog\src\classes;
+    namespace BlogJeanForteroche\src\classes;
 
     class Post{
 

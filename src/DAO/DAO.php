@@ -1,6 +1,6 @@
 <?php
 
-	namespace Blog\src\DAO;
+	namespace BlogJeanForteroche\src\DAO;
 
 	use PDO;
 

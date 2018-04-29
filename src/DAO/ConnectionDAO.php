@@ -1,9 +1,9 @@
 <?php
 
-    namespace Blog\src\DAO;
+    namespace BlogJeanForteroche\src\DAO;
 
-    use Blog\src\classes\Post;
-    use Blog\src\classes\Comment;
+    use BlogJeanForteroche\src\classes\Post;
+    use BlogJeanForteroche\src\classes\Comment;
 
     class ConnectionDAO extends DAO{
 
@@ -35,7 +35,7 @@
                         'password' => $passwordVisitorHashed
                     ]);
 
-                    echo 'Votre inscription a bien été prise en compte. Veuillez vous connecter afin d\'accéder à votre espace personnel.';
+                    //echo 'Votre inscription a bien été prise en compte. Veuillez vous connecter afin d\'accéder à votre espace personnel.';
                 } else {
                     echo 'Vous n\'avez pas saisi les mêmes mots de passe.';
                 }
@@ -64,8 +64,6 @@
                     $_SESSION['id'] = $row['id'];
                     $_SESSION['login'] = $login;
                     $_SESSION['status'] = $row['status'];
-
-                    echo 'Vous êtes connecté !';
 
                     // Regarding the status of the member, the redirection is different
                     if ($row['status'] == 'admin'){

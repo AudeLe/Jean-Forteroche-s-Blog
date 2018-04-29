@@ -1,9 +1,9 @@
 <?php
 
-    namespace Blog\src\DAO;
+    namespace BlogJeanForteroche\src\DAO;
 
-    use Blog\src\classes\Comment;
-    use Blog\src\classes\Post;
+    use BlogJeanForteroche\src\classes\Comment;
+    use BlogJeanForteroche\src\classes\Post;
 
     class CommentDAO extends DAO{
 

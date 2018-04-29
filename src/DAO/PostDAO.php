@@ -1,8 +1,8 @@
 <?php
 	
-	namespace Blog\src\DAO;
+	namespace BlogJeanForteroche\src\DAO;
 
-	use Blog\src\classes\Post;
+	use BlogJeanForteroche\src\classes\Post;
 
 	class PostDAO extends DAO{
 

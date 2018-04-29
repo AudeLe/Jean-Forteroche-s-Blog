@@ -1,9 +1,9 @@
 <?php
 
-    namespace Blog\src\controller;
+    namespace BlogJeanForteroche\src\controller;
 
-    use Blog\src\DAO\ConnectionDAO;
-    use Blog\src\Classes\View;
+    use BlogJeanForteroche\src\DAO\ConnectionDAO;
+    use BlogJeanForteroche\src\Classes\View;
 
     class BackController{
 
@@ -108,6 +108,8 @@
 
         /**
          * @param $id
+         * @param $checkLogin
+         * @param $checkPassword
          */
         // Allow the person's to delete their account
         public function deletionAccount($id, $checkLogin, $checkPassword){

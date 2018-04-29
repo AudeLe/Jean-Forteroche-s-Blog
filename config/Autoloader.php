@@ -1,6 +1,6 @@
 <?php
 
-	namespace Blog\config;
+	namespace BlogJeanForteroche\config;
 
 	class Autoloader {
 
@@ -15,7 +15,7 @@
          * @param $class
          */
 		public static function autoload($class){
-			$class = str_replace('Blog', '', $class);
+			$class = str_replace('BlogJeanForteroche', '', $class);
 			$class = str_replace('\\', '/', $class);
 			require '../'.$class.'.php';
 		}

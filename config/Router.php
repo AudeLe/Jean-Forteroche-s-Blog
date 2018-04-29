@@ -1,9 +1,9 @@
 <?php
 
-    namespace Blog\config;
+    namespace BlogJeanForteroche\config;
 
-    use Blog\src\controller\FrontController;
-    use Blog\src\controller\BackController;
+    use BlogJeanForteroche\src\controller\FrontController;
+    use BlogJeanForteroche\src\controller\BackController;
 
     class Router {
 

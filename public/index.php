@@ -5,7 +5,7 @@
 	session_start();
 	session_regenerate_id(true);
 
-    Blog\config\Autoloader::register();
+    BlogJeanForteroche\config\Autoloader::register();
 
-    $router = new Blog\config\Router();
+    $router = new BlogJeanForteroche\config\Router();
 	$router->requestRouter();

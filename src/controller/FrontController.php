@@ -1,10 +1,10 @@
 <?php
 
-    namespace Blog\src\controller;
+    namespace BlogJeanForteroche\src\controller;
 
-    use Blog\src\classes\View;
-    use Blog\src\DAO\PostDAO;
-    use Blog\src\DAO\CommentDAO;
+    use BlogJeanForteroche\src\classes\View;
+    use BlogJeanForteroche\src\DAO\PostDAO;
+    use BlogJeanForteroche\src\DAO\CommentDAO;
 
 	class FrontController{
 
