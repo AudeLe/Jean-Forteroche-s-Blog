@@ -104,10 +104,10 @@
 
                     // Add a comment
                     elseif($_GET['action'] == 'addComment'){
-                        if(isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['memberId']) && $_GET['memberId'] > 0){
+                        if(isset($_GET['postId']) && $_GET['postId'] > 0 && isset($_GET['memberId'])){
                             // Verify if the inputs are not empty
                             if(!empty($_POST['author']) && !empty($_POST['comment'])){
-                                $this->frontController->addComment($_GET['id'], $_GET['memberId'], $_POST['author'], $_POST['comment']);
+                                $this->frontController->addComment($_GET['postId'], $_GET['memberId'], $_POST['author'], $_POST['comment']);
                             } else {
                                 throw new \Exception('Tous les champs ne sont pas remplis !');
                             }
