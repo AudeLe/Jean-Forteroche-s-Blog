@@ -179,8 +179,8 @@
 
                     // Connection on the website
                     elseif($_GET['action'] == 'connection'){
-                        if(!empty($_POST['login']) && !empty($_POST['passwordVisitor'])){
-                            $this->backController->connection($_POST['login'], $_POST['passwordVisitor']);
+                        if(!empty($_POST['loginConnection']) && !empty($_POST['passwordVisitorConnection'])){
+                            $this->backController->connection($_POST['loginConnection'], $_POST['passwordVisitorConnection']);
                         } else {
                             throw new \Exception('Impossible de vous identifier.');
                         }
@@ -221,8 +221,8 @@
 
                     // Deletion of the account
                     elseif($_GET['action'] == 'deletionAccount'){
-                        if(isset($_GET['id']) && $_GET['id'] > 0 && !empty($_POST['checkLogin']) && !empty($_POST['checkPassword'])){
-                            $this->backController->deletionAccount($_GET['id'], $_POST['checkLogin'], $_POST['checkPassword']);
+                        if(isset($_GET['id']) && $_GET['id'] > 0 && !empty($_POST['checkLoginDelete']) && !empty($_POST['checkPasswordDelete'])){
+                            $this->backController->deletionAccount($_GET['id'], $_POST['checkLoginDelete'], $_POST['checkPasswordDelete']);
                         } else {
                             throw new \Exception('Impossible de supprimer ce compte.');
                         }

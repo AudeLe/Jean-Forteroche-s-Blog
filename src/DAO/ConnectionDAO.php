@@ -48,28 +48,28 @@
          * @param $passwordVisitor
          */
         // Allows a member to connect to his personal space
-        public function connection($login, $passwordVisitor){
+        public function connection($loginConnection, $passwordVisitorConnection){
 
             $sql = 'SELECT id, password, status FROM members WHERE login = ?';
-            $result = $this->sql($sql, [$login]);
+            $result = $this->sql($sql, [$loginConnection]);
             $row = $result->fetch();
 
             // Verifies if the login is in the database
             if($row){
-                $checkPassword = password_verify($passwordVisitor, $row['password']);
+                $checkPassword = password_verify($passwordVisitorConnection, $row['password']);
                 // And if the password typed is the right one
                 if($checkPassword == true){
 
                     //Charging the credentials of the session
                     $_SESSION['id'] = $row['id'];
-                    $_SESSION['login'] = $login;
+                    $_SESSION['login'] = $loginConnection;
                     $_SESSION['status'] = $row['status'];
 
                     // Regarding the status of the member, the redirection is different
                     if ($row['status'] == 'admin'){
                         header('Location: ../public/index.php?action=getChaptersAndReportedComments');
                     } else {
-                        header('Location: ../public/index.php?action=getMemberComments&login='.$login.'');
+                        header('Location: ../public/index.php?action=getMemberComments&login='.$loginConnection.'');
                     }
                 } else {
                     echo 'Mauvais identifiant ou mot de passe';
@@ -180,19 +180,19 @@
          * @param $id
          */
         // Allows the member to delete his/her account. This action isn't available for the admin
-        public function deletionAccount($id, $checkLogin, $checkPassword){
+        public function deletionAccount($id, $checkLoginDelete, $checkPasswordDelete){
 
             $sql = 'SELECT id, password FROM members WHERE login = :login';
             $result = $this->sql($sql, [
-                'login' => $checkLogin
+                'login' => $checkLoginDelete
             ]);
             $row = $result->fetch();
             if($row){
-                $confirmPassword = password_verify($checkPassword, $row['password']);
+                $confirmPassword = password_verify($checkPasswordDelete, $row['password']);
 
                 if($confirmPassword == false){
                     echo 'Mauvais identifiant ou mot de passe';
-                        header('Location: ../public/index.php?action=getMemberComments&login='.$checkLogin.'');
+                        header('Location: ../public/index.php?action=getMemberComments&login='.$checkLoginDelete.'');
                 } else {
                     $this->logOut();
                     $sql = 'DELETE FROM members WHERE id = ?';
