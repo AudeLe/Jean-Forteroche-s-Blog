@@ -97,8 +97,9 @@
 
         <!-- TinyMCE -->
             <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=47ep4zzfi51ytdurn5a7ju3fuix1v553r78z5vw16yh9wgsl"></script>
-            <script>tinymce.init({ selector:'textarea',
-            auto_focus: 'article'
+            <script>tinymce.init({
+                mode: "specific_textareas",
+                editor_selector:"writtingChapter"
             });</script>
 
 	</body>
