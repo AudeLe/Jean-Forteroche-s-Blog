@@ -58,8 +58,12 @@
         // Allow to add a comment
         public function postComment($postId, $memberId, $author, $comment){
 
-            $sql = 'INSERT INTO comments(post_id, member_id, author, comment, comment_date) VALUES (?, ?, ?, ?, NOW())';
-            $this->sql($sql, [$postId, $memberId, $author, $comment]);
+            $sql = 'INSERT INTO comments(post_id, member_id, author, comment, comment_date) VALUES (:postId, :memberId, :author, :comment, NOW())';
+            $this->sql($sql, [
+                'postId' => $postId,
+                'memberId' => $memberId,
+                'author' => $author,
+                'comment' => $comment]);
 
         }
 
