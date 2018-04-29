@@ -152,12 +152,22 @@
         // When a member is connected, return all the member's comment
         public function getMemberComments($login){
 
-            $sql = 'SELECT posts.id, posts.title, comments.id, comments.post_id, comments.author, comments.comment, DATE_FORMAT(comments.comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr 
+            $sql = 'SELECT id FROM members WHERE login = ?';
+            $result = $this->sql($sql, [$login]);
+            $row = $result -> fetch();
+
+            if($row){
+                $memberId = $row['id'];
+            } else {
+                echo 'Impossible de récupérer votre identifiant.';
+            }
+
+            $sql = 'SELECT posts.id, posts.title, comments.id, comments.member_id, comments.post_id, comments.author, comments.comment, DATE_FORMAT(comments.comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr 
                     FROM comments 
                     INNER JOIN posts
                     ON comments.post_id = posts.id
-                    WHERE author = ? ORDER BY comment_date DESC';
-            $result = $this->sql($sql, [$login]);
+                    WHERE comments.member_id = ? ORDER BY comment_date DESC';
+            $result = $this->sql($sql, [$memberId]);
             $comments = [];
 
             foreach($result as $row){
