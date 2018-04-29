@@ -34,7 +34,7 @@
                                 <input type="password" id="passwordVisitorCheck" name="passwordVisitorCheck"/>
                             </div>
                             <div>
-                                <input type="submit" value="S'inscrire"class="submitButton"/>
+                                <input type="submit" value="S'inscrire" class="submitButton"/>
                             </div>
                         </form>
                     </div>
@@ -69,12 +69,12 @@
                     <div class="modal-body">
                         <form action = "../public/index.php?controller=backend&action=connection" id="connectionForm" method="post">
                             <div>
-                                <label for="login">Identifiant</label><br />
-                                <input type="text" id="login" name="login"/>
+                                <label for="loginConnection">Identifiant</label><br />
+                                <input type="text" id="loginConnection" name="loginConnection"/>
                             </div>
                             <div>
-                                <label for="passwordVisitor">Mot de passe</label><br />
-                                <input type="password" id="passwordVisitor" name="passwordVisitor"/>
+                                <label for="passwordVisitorConnection">Mot de passe</label><br />
+                                <input type="password" id="passwordVisitorConnection" name="passwordVisitorConnection"/>
                             </div>
                             <div>
                                 <input type="submit" value="Se connecter" class="submitButton"/>
