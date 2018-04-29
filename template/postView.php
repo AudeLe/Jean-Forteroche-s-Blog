@@ -1,14 +1,14 @@
-<?php $this->title = 'Chapitre - '.$post->getTitle(); ?>
+<?php $this->title = 'Chapitre - '.strip_tags($post->getTitle()); ?>
 
-<h2><?= $post->getTitle(); ?></h2>
+<h2><?= strip_tags($post->getTitle()); ?></h2>
 
 <em class="date">Créé le <?= $post->getCreationDate(); ?></em>
 <div class="row" id="postAndCommentAdding">
     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
         <div class="post">
-            <?php $postIdActivated = $post->getId(); ?>
+            <?php $postIdActivated = strip_tags($post->getId()); ?>
 
-            <p><?= $post->getContent(); ?></p>
+            <p><?= strip_tags($post->getContent()); ?></p>
         </div>
 
         <?php
@@ -16,7 +16,7 @@
         ?>
 
         <div class="col-lg-12 col-md-12 col-ms-12 col-xs-12 formComment">
-            <form action="../public/index.php?action=addComment&id=<?= $post->getId(); ?>&memberId=<?php
+            <form action="../public/index.php?action=addComment&id=<?= strip_tags($post->getId()); ?>&memberId=<?php
             if(!isset($_SESSION['id'])){
                 ?>
             0
@@ -61,11 +61,11 @@
             <?php
             if($postIdActivated == $post->getId()){
                 ?>
-                <a><?= $post->getTitle(); ?></a>
+                <a><?= strip_tags($post->getTitle()); ?></a>
                 <?php
             } else {
                 ?>
-                <a href="../public/index.php?action=post&id=<?= $post->getId(); ?>"><?= $post->getTitle(); ?></a>
+                <a href="../public/index.php?action=post&id=<?= strip_tags($post->getId()); ?>"><?= strip_tags($post->getTitle()); ?></a>
                 <?php
             }
             ?>
@@ -82,21 +82,21 @@
         ?>
         <div class="row comment">
             <div class="col-lg- 11 col-md-11 col-sm-12 col-xs-12">
-                <h5><?= $comment->getAuthor(); ?></h5>
-                <p><?= $comment->getComment(); ?></p>
-                <p>Posté le <?= $comment->getCommentDate(); ?></p>
+                <h5><?= strip_tags($comment->getAuthor()); ?></h5>
+                <p><?= strip_tags($comment->getComment()); ?></p>
+                <p>Posté le <?= strip_tags($comment->getCommentDate()); ?></p>
             </div>
 
             <div class=" reportButton col-lg-1 col-md-1 col-sm-12 col-xs-12">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reportComment<?= $comment->getId(); ?>">Signaler</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reportComment<?= strip_tags($comment->getId()); ?>">Signaler</button>
 
                 <!-- Modal -->
-                <div class="modal fade" id="reportComment<?= $comment->getId(); ?>" tabindex="1" role="dialog" aria-labelledby="reportComment<?= $comment->getId(); ?>Label" aria-hidden="true">
+                <div class="modal fade" id="reportComment<?= strip_tags($comment->getId()); ?>" tabindex="1" role="dialog" aria-labelledby="reportComment<?= strip_tags($comment->getId()); ?>Label" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="reportComment<?= $comment->getId(); ?>Label">
+                                <h5 class="modal-title" id="reportComment<?= strip_tags($comment->getId()); ?>Label">
                                     Signaler un commentaire
                                 </h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -106,7 +106,7 @@
 
                             <div class="modal-body">
                                 <p>Êtes-vous sûr(e) de vouloir signaler ce commentaire ?</p>
-                                <a href="../public/index.php?action=reportComment&id=<?= $comment->getId(); ?>&postId=<?= $comment->getPostId();?>">Signaler</a>
+                                <a href="../public/index.php?action=reportComment&id=<?= strip_tags($comment->getId()); ?>&postId=<?= strip_tags($comment->getPostId());?>">Signaler</a>
                             </div>
 
                             <div class="modal-footer"

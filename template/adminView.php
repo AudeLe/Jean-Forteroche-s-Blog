@@ -56,16 +56,16 @@
                     foreach($posts as $post):
                         ?>
                         <tr class="listPostsAdmin">
-                            <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2 postsAdmin"><?= $post->getTitle(); ?></td>
+                            <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2 postsAdmin"><?= strip_tags($post->getTitle()); ?></td>
                             <td class="col-lg-6 col-md-6 col-sm-2 col-xs-2 postsAdmin">
-                                <div class="postContent"><?= $post->getContent(); ?>
+                                <div class="postContent"><?= strip_tags($post->getContent()); ?>
                                     <span class="ellipsis">&#133;</span>
                                     <span class="fill"></span>
                                 </div>
                             </td>
-                            <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2 postsAdmin"><?= $post->getCreationDate(); ?></td>
-                            <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1 postsAdmin"><a href="../public/index.php?action=editPost&id=<?= $post->getId(); ?>"><i class="fas fa-edit"></i></a></td>
-                            <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1 postsAdmin"><a href="../public/index.php?action=deletePost&id=<?= $post->getId(); ?>"><i class="fas fa-trash alt"></i></a></td>
+                            <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2 postsAdmin"><?= strip_tags($post->getCreationDate()); ?></td>
+                            <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1 postsAdmin"><a href="../public/index.php?action=editPost&id=<?= strip_tags($post->getId()); ?>"><i class="fas fa-edit"></i></a></td>
+                            <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1 postsAdmin"><a href="../public/index.php?action=deletePost&id=<?= strip_tags($post->getId()); ?>"><i class="fas fa-trash alt"></i></a></td>
                         </tr>
                     <?php endforeach; ?>
                 </table>
@@ -93,12 +93,12 @@
                             ?>
                             <tr class="reportedComments">
 
-                                <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2 reportedComment"><?= $reportedComment->getPostId()->getTitle(); ?></td>
-                                <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2 reportedComment"><?= $reportedComment->getAuthor(); ?></td>
-                                <td class="col-lg-5 col-md-5 col-sm-5 col-xs-5 reportedComment"><?= $reportedComment->getComment(); ?></td>
-                                <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1 reportedComment"><?= $reportedComment->getCommentDate(); ?></td>
-                                <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1 reportedComment"><a href="../public/index.php?action=ignoreReportedComment&id=<?= $reportedComment->getId(); ?>"><i class="fas fa-thumbs-up"></i></a></td>
-                                <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1 reportedComment"><a href="../public/index.php?action=deleteComment&id=<?= $reportedComment->getId(); ?>"><i class="fas fa-trash-alt"></i></a></td>
+                                <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2 reportedComment"><?= strip_tags($reportedComment->getPostId()->getTitle()); ?></td>
+                                <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2 reportedComment"><?= strip_tags($reportedComment->getAuthor()); ?></td>
+                                <td class="col-lg-5 col-md-5 col-sm-5 col-xs-5 reportedComment"><?= strip_tags($reportedComment->getComment()); ?></td>
+                                <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1 reportedComment"><?= strip_tags($reportedComment->getCommentDate()); ?></td>
+                                <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1 reportedComment"><a href="../public/index.php?action=ignoreReportedComment&id=<?= strip_tags($reportedComment->getId()); ?>"><i class="fas fa-thumbs-up"></i></a></td>
+                                <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1 reportedComment"><a href="../public/index.php?action=deleteComment&id=<?= strip_tags($reportedComment->getId()); ?>"><i class="fas fa-trash-alt"></i></a></td>
                             </tr>
 
                         <?php endforeach; ?>
@@ -146,11 +146,11 @@
                         foreach ($comments as $comment){
                             ?>
                             <tr class="listCommentsMember">
-                                <td class="col-md-2 commentsMember"><?= $comment->getPostId()->getTitle(); ?></td>
-                                <td class="col-md-6 commentsMember"><?= $comment->getComment(); ?></td>
-                                <td class="col-md-2 commentsMember"><?= $comment->getCommentDate(); ?></td>
-                                <td class="col-md-1 commentsMember"><a href="../public/index.php?action=editComment&id=<?= $comment->getId(); ?>"><i class="fas fa-edit"></i></a></td>
-                                <td class="col-md-1 commentsMember"><a href="../public/index.php?action=deleteComment&id=<?= $comment->getId(); ?>"><i class="fas fa-trash alt"></i></a></td>
+                                <td class="col-md-2 commentsMember"><?= strip_tags($comment->getPostId()->getTitle()); ?></td>
+                                <td class="col-md-6 commentsMember"><?= strip_tags($comment->getComment()); ?></td>
+                                <td class="col-md-2 commentsMember"><?= strip_tags($comment->getCommentDate()); ?></td>
+                                <td class="col-md-1 commentsMember"><a href="../public/index.php?action=editComment&id=<?= strip_tags($comment->getId()); ?>"><i class="fas fa-edit"></i></a></td>
+                                <td class="col-md-1 commentsMember"><a href="../public/index.php?action=deleteComment&id=<?= strip_tags($comment->getId()); ?>"><i class="fas fa-trash alt"></i></a></td>
                             </tr>
                             <?php
                         }

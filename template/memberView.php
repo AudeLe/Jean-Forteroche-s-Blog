@@ -31,11 +31,11 @@
                     foreach ($comments as $comment){
                         ?>
                         <tr class="listCommentsMember">
-                            <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2 commentsMember"><?= $comment->getPostId()->getTitle(); ?></td>
-                            <td class="col-lg-6 col-md-6 col-sm-6 col-xs-6 commentsMember"><?= $comment->getComment(); ?></td>
-                            <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2 commentsMember"><?= $comment->getCommentDate(); ?></td>
-                            <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1 commentsMember"><a href="../public/index.php?action=editComment&id=<?= $comment->getId(); ?>"><i class="fas fa-edit"></i></a></td>
-                            <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1 commentsMember"><a href="../public/index.php?action=deleteComment&id=<?= $comment->getId(); ?>"><i class="fas fa-trash alt"></i></a></td>
+                            <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2 commentsMember"><?= strip_tags($comment->getPostId()->getTitle()); ?></td>
+                            <td class="col-lg-6 col-md-6 col-sm-6 col-xs-6 commentsMember"><?= strip_tags($comment->getComment()); ?></td>
+                            <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2 commentsMember"><?= strip_tags($comment->getCommentDate()); ?></td>
+                            <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1 commentsMember"><a href="../public/index.php?action=editComment&id=<?= strip_tags($comment->getId()); ?>"><i class="fas fa-edit"></i></a></td>
+                            <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1 commentsMember"><a href="../public/index.php?action=deleteComment&id=<?= strip_tags($comment->getId()); ?>"><i class="fas fa-trash alt"></i></a></td>
                         </tr>
                         <?php
                     }

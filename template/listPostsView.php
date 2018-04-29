@@ -19,9 +19,9 @@
             foreach($posts[0] as $post):
                 ?>
                 <div class="news">
-                    <h4><a href="../public/index.php?action=post&id=<?= $post->getId(); ?>"><?= $post->getTitle(); ?></a></h4>
-                    <p class="date datePosts">Créé le <em><?= $post->getCreationDate(); ?></em></p>
-                    <div class="postContent"><?= $post->getContent(); ?>
+                    <h4><a href="../public/index.php?action=post&id=<?= strip_tags($post->getId()); ?>"><?= strip_tags($post->getTitle()); ?></a></h4>
+                    <p class="date datePosts">Créé le <em><?= strip_tags($post->getCreationDate()); ?></em></p>
+                    <div class="postContent"><?= strip_tags($post->getContent()); ?>
                         <span class="ellipsis">&#133;</span>
                         <span class="fill"></span>
                     </div>
