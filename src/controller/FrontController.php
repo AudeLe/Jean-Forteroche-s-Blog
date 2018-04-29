@@ -117,7 +117,7 @@
 
             $this -> commentManager->postComment($postId, $memberId, $author, $comment);
 
-            header('Location: ../public/index.php?action=post&id=' . $postId);
+            header('Location: ../public/index.php?action=post&id='.$postId);
         }
 
         /**
