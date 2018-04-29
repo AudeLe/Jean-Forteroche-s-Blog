@@ -3,7 +3,7 @@
     namespace BlogJeanForteroche\src\controller;
 
     use BlogJeanForteroche\src\DAO\ConnectionDAO;
-    use BlogJeanForteroche\src\Classes\View;
+    use BlogJeanForteroche\src\classes\View;
 
     class BackController{
 
