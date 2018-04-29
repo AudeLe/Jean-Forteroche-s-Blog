@@ -73,12 +73,12 @@
 
                         <form action="../public/index.php?action=deletionAccount&id=<?= $_SESSION['id'] ?>" method="post">
                             <div>
-                                <label for="checkLogin">Pseudo</label><br />
-                                <input type="text" id="checkLogin" name="checkLogin" value="<?= $_SESSION['login'] ?>" readonly/>
+                                <label for="checkLoginDelete">Pseudo</label><br />
+                                <input type="text" id="checkLoginDelete" name="checkLoginDelete" value="<?= $_SESSION['login'] ?>" readonly/>
                             </div>
                             <div>
-                                <label for="checkPassword">Mot de passe</label><br />
-                                <input type="password" id="checkPassword" name="checkPassword" />
+                                <label for="checkPasswordDelete">Mot de passe</label><br />
+                                <input type="password" id="checkPasswordDelete" name="checkPasswordDelete" />
                             </div>
                             <div>
                                 <input type="submit" value="Supprimer mon compte" class="submitButton" />
@@ -91,4 +91,3 @@
 
             </div>
         </div>
-    </div>
