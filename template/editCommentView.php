@@ -2,7 +2,7 @@
 
 	
 	<h2>Commentaires</h2>
-    <div class="row">
+    <div class="row" id="editCommentView">
         <div class="col-md-12">
             <form action="../public/index.php?action=editedComment&id=<?= $comment->getId(); ?>&memberLogin=<?= $comment->getAuthor(); ?>" method="post">
                 <div>
