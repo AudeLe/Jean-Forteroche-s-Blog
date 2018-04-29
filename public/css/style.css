@@ -176,6 +176,10 @@ header i{
     text-align: center;
 }
 
+#editCommentView{
+    text-align: center;
+}
+
 
 /* ===== MEDIA QUERIES ===== */
 @media(max-width: 768px){
