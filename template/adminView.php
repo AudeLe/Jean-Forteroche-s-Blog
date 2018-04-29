@@ -12,7 +12,7 @@
             </div>
             <div>
                 <label for="article">Nouveau chapitre</label><br />
-                <textarea id="article" name="article"></textarea>
+                <textarea id="article" name="article" class="writtingChapter"></textarea>
             </div>
             <div>
                 <input type="submit" value="Ajouter cet article" class="submitButton">
