@@ -92,8 +92,10 @@ header i{
 
 .postContent{
     line-height: 1.5em;
+    margin-bottom: 16px;
     max-height: 8.5em;
     overflow: hidden;
+    padding-top: 16px;
     position: relative;
 }
 
