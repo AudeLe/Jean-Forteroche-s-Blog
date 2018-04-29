@@ -47,13 +47,13 @@
         }
 
         /**
-         * @param $login
-         * @param $passwordVisitor
+         * @param $loginConnection
+         * @param $passwordVisitorConnection
          */
         // Connection on the website
-        public function connection($login, $passwordVisitor){
+        public function connection($loginConnection, $passwordVisitorConnection){
 
-            $connectionDetails = $this->connectionManager->connection($login, $passwordVisitor);
+            $this->connectionManager->connection($loginConnection, $passwordVisitorConnection);
 
         }
 
@@ -76,7 +76,7 @@
         // Verify the person's credentials before allowing him/her to change them
         public function checkInformations($checkLogin, $checkPassword){
 
-            $visitorInformations = $this->connectionManager->checkInformations($checkLogin, $checkPassword);
+            $this->connectionManager->checkInformations($checkLogin, $checkPassword);
 
             $view = new View('editInformations');
             $view->render([]);
@@ -108,13 +108,12 @@
 
         /**
          * @param $id
-         * @param $checkLogin
-         * @param $checkPassword
+         * @param $checkLoginDelete
+         * @param $checkPasswordDelete
          */
         // Allow the person's to delete their account
-        public function deletionAccount($id, $checkLogin, $checkPassword){
-            //$this->connectionManager->logOut();
-            $this->connectionManager->deletionAccount($id, $checkLogin, $checkPassword);
+        public function deletionAccount($id, $checkLoginDelete, $checkPasswordDelete){
+            $this->connectionManager->deletionAccount($id, $checkLoginDelete, $checkPasswordDelete);
         }
 
     }
