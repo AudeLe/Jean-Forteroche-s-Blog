@@ -16,11 +16,9 @@
         ?>
 
         <div class="col-lg-12 col-md-12 col-ms-12 col-xs-12 formComment">
-            <form action="../public/index.php?action=addComment&id=<?= strip_tags($post->getId()); ?>&memberId=<?php
+            <form action="../public/index.php?action=addComment&postId=<?= $post->getId(); ?>&memberId=<?php
             if(!isset($_SESSION['id'])){
-                ?>
-            0
-        <?php
+                ?>0<?php
             } else {
                 echo $_SESSION['id'];
             }
