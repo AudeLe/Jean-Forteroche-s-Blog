@@ -1,5 +1,6 @@
 <?php $this->title = 'Accueil'; ?>
 
+    <!-- Display all the posts/chapters on the welcome page -->
     <div class="row" id="listPostsWelcome">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <h1>Bienvenue sur mon blog</h1>
@@ -33,6 +34,7 @@
 
         </div>
 
+        <!-- Introduction of the author -->
         <div id="authorPresentation" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
             <h3>Jean Forteroche</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mauris tortor, euismod a augue in, lacinia semper ante.<br/>
@@ -42,6 +44,7 @@
         </div>
     </div>
 
+    <!-- Pagination -->
     <div class="pages">
         <?php foreach($posts[1] as $page): ?>
             <span><?= $page; ?></span>

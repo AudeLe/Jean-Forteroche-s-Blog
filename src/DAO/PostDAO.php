@@ -103,7 +103,7 @@
          * @param $id
          * @return Post
          */
-        // Recover the post/chapter we want to édit
+        // Recover the post/chapter we want to edit
 		public function editPost($id){
 
 		    $sql = 'SELECT id, title, content, DATE_FORMAT(creation_date, \'%d%m%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?';

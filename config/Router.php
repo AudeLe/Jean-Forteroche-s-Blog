@@ -209,7 +209,7 @@
                         }
                     }
 
-                    // CHange the login
+                    // Change the login
                     elseif($_GET['action'] == 'editLogin'){
                         if(!empty($_POST['editLogin'])){
                             $this->backController->editLogin($_POST['editLogin']);

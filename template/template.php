@@ -69,7 +69,7 @@
                 </nav>
             </header>
 
-
+        <!-- Display the banner image -->
         <div class="container-fluid">
             <section class="row" id="bannerSection">
                 <div id="banner">
@@ -83,7 +83,7 @@
             </section>
         </div>
 
-
+        <!-- Display the content loaded from the different views -->
         <div class="container-fluid" id="content">
             <?= $content ?>
         </div>

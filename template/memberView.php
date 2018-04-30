@@ -51,7 +51,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 changeCredentials">
                         <h4>Changer son pseudo ou son mot de passe</h4>
-                        <p>Veuillez entrer vos identifiants actuels</p>
+                        <p>Veuillez entrer vos identifiants actuels.</p>
                         <form action="../public/index.php?action=checkInformations" method="post">
                             <div>
                                 <label for="checkLogin">Pseudo</label><br />

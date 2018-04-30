@@ -21,6 +21,7 @@
 
     </div>
 
+    <!-- Display of the chapters/posts, of the reported comments, of the access to his account and to his comments -->
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
             <ul class="nav nav-tabs" id="myTab" role="tablist">

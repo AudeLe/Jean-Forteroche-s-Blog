@@ -109,6 +109,7 @@
 
         /**
          * @param $postId
+         * @param $memberId
          * @param $author
          * @param $comment
          */
@@ -140,7 +141,7 @@
          * @param $newComment
          */
         // Recording of the changes on the database
-        public function editedComment($id, $memberLogin, $newComment){
+        public function editedComment($id, $newComment){
 
             $this->commentManager->editedComment($id, $newComment);
 

@@ -44,8 +44,8 @@
         }
 
         /**
-         * @param $login
-         * @param $passwordVisitor
+         * @param $loginConnection
+         * @param $passwordVisitorConnection
          */
         // Allows a member to connect to his personal space
         public function connection($loginConnection, $passwordVisitorConnection){
@@ -119,7 +119,6 @@
         }
 
         /**
-         * @param $idVisitor
          * @param $editPassword
          * @param $editPasswordCheck
          */
@@ -143,7 +142,6 @@
         }
 
         /**
-         * @param $idVisitor
          * @param $editLogin
          */
         // Allows the member/admin to change his/her login
@@ -168,6 +166,10 @@
             header('Location: ../public/index.php');
         }
 
+        /**
+         * @param $editLogin
+         */
+        // When the member or the admin changes their login, changes the pseudo of all the comments they wrote
         public function editLoginComments($editLogin){
             $sql = 'UPDATE comments SET author = :editlogin WHERE member_id = :memberId ';
             $result = $this->sql($sql, [
@@ -178,8 +180,10 @@
 
         /**
          * @param $id
+         * @param $checkLoginDelete
+         * @param $checkPasswordDelete
          */
-        // Allows the member to delete his/her account. This action isn't available for the admin
+        // Allows the member to delete his/her account. This action isn't available for the admin.
         public function deletionAccount($id, $checkLoginDelete, $checkPasswordDelete){
 
             $sql = 'SELECT id, password FROM members WHERE login = :login';
@@ -246,7 +250,6 @@
         }
 
         /**
-         * @param $login
          * @return array
          */
         // When a member is connected, return all the member's comment

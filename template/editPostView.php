@@ -1,5 +1,6 @@
 <?php $this->title = 'Edition de post'; ?>
 
+    <!-- Allow the admin to edit the chapter -->
 	<h2>Edition de chapitre</h2>
 
     <div class="row">

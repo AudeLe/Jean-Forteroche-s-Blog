@@ -1,6 +1,6 @@
 <?php $this->title = 'Edition de commentaire'; ?>
 
-	
+	<!-- Page allowing to edit the comment -->
 	<h2>Commentaires</h2>
     <div class="row" id="editCommentView">
         <div class="col-md-12">
