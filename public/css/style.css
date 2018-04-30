@@ -182,6 +182,17 @@ header i{
     text-align: center;
 }
 
+/* ----- LOG OUT ----- */
+
+#logOutMessage{
+    text-align: center;
+}
+
+/* ----- REGISTRATION ----- */
+
+#registrationMessage{
+    text-align: center;
+}
 
 /* ===== MEDIA QUERIES ===== */
 @media(max-width: 768px){
