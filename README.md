@@ -3,7 +3,7 @@ English version below
 
 # Blog de Jean Forteroche
 
-Ce blog est destiné à Jean Forteroche, écrivain.
+Ce blog est destiné à Jean Forteroche, acteur et écrivain.
 Il a été réalisé en HTML, CSS, PHP avec une base de données MySQL. Bootstrap a été utilisé afin de réaliser le design de ce projet. Tous les éléments du CRUD (Create/Créer, Read/Lire, Upload/Mettre à jour, Delete/Supprimer) sont présents.
 
 L'interface frontend permet la lecture des billets et des commentaires. Tandis que l'interface backend permet à l'administrateur de créer, d'éditer et de supprimer les billets. Les billets sont rédigés via l'interface WYSIWYG basée sur TinyMCE.
@@ -29,7 +29,7 @@ Ce projet est sous la licence MIT.
 
 # Jean Forteroche's Blog
 
-This blog will be used by Jean Forteroche. He is a writer.
+This blog will be used by Jean Forteroche. He is an actor and a writer.
 It has been realized with HTML, CSS, PHP and a MySQL database. Bootstrap has been used to realize this project's design. All the elements of the CRUD (Create, Read, Upload, Delete) are presents.
 
 The frontend interface allows the reading of the posts and of the comments. While the backend interface allows to the administrator to create, edit and delete the posts. The posts are written through the WYSIWYG based on TinyMCE.
