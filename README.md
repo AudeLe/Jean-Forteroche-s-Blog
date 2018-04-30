@@ -38,7 +38,7 @@ The administrator has also access to his own comments. He also can modify his lo
 
 The registered members also have a space decicated. They can modify or delete their owns comments. They also can modify their login, their password, but also delete their account if they wanted.
 
-It is possible to add a comment on each and every post. A navigation system allows the visitor to navigate betwwen the different posts. It is available only when a specific post is displayed.
+It is possible to add a comment on each and every post. A navigation system allows the visitor to navigate between the different posts. It is available only when a specific post is displayed.
 
 
 #Author
