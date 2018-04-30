@@ -155,7 +155,12 @@
 
            $this->commentManager->deleteComment($id);
 
-            header('Location: ../public/index.php');
+           if($_SESSION['status'] == 'admin'){
+               header('Location: ../public/index.php?action=getChaptersAndReportedComments');
+           } else {
+               header('Location: ../public/index.php?action=getMemberComments&login='.$_SESSION['login'].'');
+           }
+
         }
 
         /**
